@@ -1,0 +1,42 @@
+<%= form_with(model: pagamento) do |form| %>
+  <% if pagamento.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(pagamento.errors.count, "error") %> prohibited this pagamento from being saved:</h2>
+
+      <ul>
+        <% pagamento.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :reserva_id, style: "display: block" %>
+    <%= form.text_field :reserva_id %>
+  </div>
+
+  <div>
+    <%= form.label :valor, style: "display: block" %>
+    <%= form.text_field :valor %>
+  </div>
+
+  <div>
+    <%= form.label :status, style: "display: block" %>
+    <%= form.text_field :status %>
+  </div>
+
+  <div>
+    <%= form.label :metodo_pagamento, style: "display: block" %>
+    <%= form.text_field :metodo_pagamento %>
+  </div>
+
+  <div>
+    <%= form.label :data_pagamento, style: "display: block" %>
+    <%= form.datetime_field :data_pagamento %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
