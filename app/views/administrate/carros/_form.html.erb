@@ -45,10 +45,11 @@
     <%= form.label :diaria, style: "display: block" %>
     <%= form.text_field :diaria %>
   </div>
+
   <div class="field">
   <%= form.label :categoria_id, "Categoria" %>
-  <%= form.collection_select :categoria_id, Categoria.all, :id, :nome, prompt: "Selecione uma categoria" %>
-</div>
+  <%= form.select :categoria_id, options_from_collection_for_select(Categoria.all, :id, :nome, carro.categoria_id), prompt: "Selecione uma categoria" %>
+  </div>
 
   <div>
     <%= form.submit %>

@@ -26,16 +26,7 @@
   box-shadow: 0 0 0 0.2rem rgba(0, 69, 33, 0.25); /* Sombra verde suave */
 }
 
-/* Botão */
-.btn-primary {
-  background-color: #01602a; /* Fundo verde */
-  border-color: #004521; /* Borda verde escura */
-}
 
-.btn-primary:hover {
-  background-color: #004521; /* Fundo verde mais escuro ao passar o mouse */
-  border-color: #003b1f; /* Borda ainda mais escura */
-}
 
 /* Link */
 a.text-muted:hover {

@@ -10,7 +10,7 @@ module Administrate
         @categoria = Categoria.find_by(id: params[:categoria_id])
         @carros = @categoria&.carros || [] # Retorna os carros da categoria ou vazio se não existir
       else
-        @carros = Carro.all
+        @carros = Carro.includes(:categoria).all
       end
     end
 
@@ -33,7 +33,7 @@ module Administrate
 
       respond_to do |format|
         if @carro.save
-          format.html { redirect_to(@carro, notice: "Carro was successfully created.") }
+          format.html { redirect_to([:administrate, @carro], notice: "Carro was successfully created.") }
           format.json { render(:show, status: :created, location: @carro) }
         else
           format.html { render(:new, status: :unprocessable_entity) }
@@ -46,7 +46,7 @@ module Administrate
     def update
       respond_to do |format|
         if @carro.update(carro_params)
-          format.html { redirect_to(@carro, notice: "Carro was successfully updated.") }
+          format.html { redirect_to([:administrate, @carro], notice: "Carro was successfully updated.") }
           format.json { render(:show, status: :ok, location: @carro) }
         else
           format.html { render(:edit, status: :unprocessable_entity) }
@@ -74,7 +74,7 @@ module Administrate
 
     # Only allow a list of trusted parameters through.
     def carro_params
-      params.require(:carro).permit(:marca, :modelo, :ano, :cor, :placa, :status, :diaria)
+      params.require(:carro).permit(:marca, :modelo, :ano, :cor, :placa, :status, :diaria, :categoria_id)
     end
   end
 end
