@@ -1,0 +1,10 @@
+<h1>Editing cliente</h1>
+
+<%= render "form", cliente: @cliente %>
+
+<br>
+
+<div>
+  <%= link_to "Show this cliente", [:administrate, @cliente] %> |
+  <%= link_to "Back to clientes", administrate_clientes_path %>
+</div>

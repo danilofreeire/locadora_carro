@@ -43,6 +43,8 @@ gem "tzinfo-data", platforms: [:windows, :jruby]
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", require: false
 
+#devise para autenticação
+
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
 
@@ -67,4 +69,8 @@ group :development do
   gem "tty-spinner"
   gem "pry"
   gem "pry-rails"
+  gem 'dotenv-rails'
 end
+
+gem "devise", "~> 4.9"
+

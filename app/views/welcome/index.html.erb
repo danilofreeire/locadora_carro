@@ -1,0 +1,7 @@
+<h1>Carros disponiveis</h1>
+
+<div id="carros">
+  <% @carros.each do |carro| %>
+    <%= render partial: "carros", locals: { carro: carro} %>
+  <% end %>
+</div>

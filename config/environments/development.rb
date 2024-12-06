@@ -75,7 +75,9 @@ Rails.application.configure do
 
   # Raise error when a before_action's only/except options reference missing actions
   config.action_controller.raise_on_missing_callback_actions = true
-
+  
+  #config devise
+  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
   config.generators.after_generate do |files|
     system("bundle exec rubocop -A --fail-level=E #{files.shelljoin}", exception: true)
   end

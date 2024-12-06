@@ -1,0 +1,52 @@
+pt-BR:
+  activerecord:
+    models:
+      admin: Administrador
+      article: Artigo
+    attributes:
+      admin:
+        id: Identificador
+        email: E-mail
+        encrypted_password: Senha encriptada
+        reset_password_token: Token de reset de senha
+        reset_password_sent_at: Reset de senha enviado em
+        remember_created_at: Lembrar criado em
+        created_at: Criado em
+        updated_at: Atualizado em
+      carro:
+        marca: Marca
+        modelo: Modelo
+        ano: Ano
+        cor: Cor
+        placa: Placa
+        status: Status
+        diaria: Diaria
+        created_at: Criado em
+        updated_at: Atualizado em
+      cliente:
+        id: Identificador
+        nome: Nome
+        email: E-mail
+        telefone: Telefone
+        endereco: Endereço
+        created_at: Criado em
+        updated_at: Atualizado em
+      reserva:
+        id: Identificador
+        cliente_id: Identificador do cliente
+        carro_id: Identificador do carro
+        data_inicio: Data de inicio
+        data_fim: Data de término
+        preco_total: Valor total
+        status: Status
+        created_at: Criado em
+        updated_at: Atualizado em
+      pagamento:
+        id: Identificador
+        reserva_id: Identificador da Reserva
+        valor: Valor
+        status: Status
+        metodo_pagamento: Metodo de pagamento
+        data_pagamento: Data de pagamento
+        created_at: Criado em
+        updated_at: Atualizado em

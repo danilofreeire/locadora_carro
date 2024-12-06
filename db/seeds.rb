@@ -9,3 +9,14 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+# db/seeds.rb
+
+admins = ["admin@admin.com", "test@test.com"]
+admins.each do |email|
+next if Admin.find_by(email: email)
+    Admin.create!(
+      email:,
+      password: ENV["DEFAULT_PASSWORD"],
+      password_confirmation: ENV["DEFAULT_PASSWORD"],
+    )
+end
