@@ -1,7 +1,98 @@
-<h1>Carros disponiveis</h1>
 
-<div id="carros">
-  <% @carros.each do |carro| %>
-    <%= render partial: "carros", locals: { carro: carro} %>
-  <% end %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Locafácil - Aluguel de Carros</title>
+
+
+</head>
+<body>
+    <!-- Header -->
+    <header class="navbar navbar-expand-lg navbar-light custom-header px-3">
+    <a class="navbar-brand" href="#">Locafácil</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+            <li class="nav-item"><a class="nav-link" href="#">Ver Minhas Reservas</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">Login</a></li>
+        </ul>
+    </div>
+</header>
+
+
+    <!-- Carrossel de Imagens -->
+    <div id="bannerCarousel" class="carousel slide mt-4" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="car-image1.jpg" class="d-block w-100" alt="Carro 1">
+            </div>
+            <div class="carousel-item">
+                <img src="car-image2.jpg" class="d-block w-100" alt="Carro 2">
+            </div>
+            <div class="carousel-item">
+                <img src="car-image3.jpg" class="d-block w-100" alt="Carro 3">
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#bannerCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#bannerCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        </button>
+    </div>
+
+    <!-- Vantagens -->
+    <div class="container text-center mt-5">
+        <h2>Por que escolher a Locafácil?</h2>
+        <div class="row mt-4">
+            <div class="col-md-4">
+                <div class="advantages-icon">🚗</div>
+                <h5>Variedade de Carros</h5>
+                <p>Encontre o carro perfeito para cada ocasião.</p>
+            </div>
+            <div class="col-md-4">
+                <div class="advantages-icon">💰</div>
+                <h5>Preços Acessíveis</h5>
+                <p>Planos que cabem no seu bolso.</p>
+            </div>
+            <div class="col-md-4">
+                <div class="advantages-icon">🛡️</div>
+                <h5>Segurança</h5>
+                <p>Carros revisados e prontos para uso.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Frota -->
+    <div class="container mt-5">
+    <h2 class="text-center">Nossa Frota</h2>
+    <div class="row mt-4">
+        <% @carros.each do |carro| %>
+            <div class="col-md-4 mb-4"> <!-- Cada carro ocupa 4 colunas em uma linha -->
+                <%= render partial: "carros", locals: { carro: carro } %>
+            </div>
+        <% end %>
+    </div>
 </div>
+
+
+    <!-- Footer -->
+    <footer class="mt-5">
+        <p>© 2024 Locafácil. Todos os direitos reservados.</p>
+    </footer>
+
+  
+</body>
+</html>
+
+
+
+
+
+
+

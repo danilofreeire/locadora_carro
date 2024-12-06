@@ -1,16 +1,8 @@
-<div>
-  <p>
-   
-    
-
-    <div class="card" style="width: 18rem;">
-      <img src="..." class="card-img-top" alt="...">
-      <div class="card-body">
-        <h5 class="card-title"> <strong>Nome:</strong></h5>
-        <p class="card-text"><%= carro.modelo %></p>
-        <a href="#" class="btn btn-primary">Ver detalhes</a>
-      </div>
+<div class="card car-card">
+    <%#= image_tag carro.imagem_url, class: "card-img-top", alt: carro.nome %>
+    <div class="card-body text-center">
+        <h5 class="card-title"><%= carro.modelo %></h5>
+        <p class="card-text"><%= carro.ano %></p>
+        <a href="#" class="btn btn-primary">Reservar</a>
     </div>
-    
-  </p>
 </div>

@@ -1,0 +1,13 @@
+.advantages-icon {
+  font-size: 2rem;
+  color: #007bff;
+}
+.car-card img {
+  height: 150px;
+  object-fit: cover;
+}
+footer {
+  background-color: #000000;
+  padding: 20px;
+  text-align: center;
+}

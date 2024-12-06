@@ -7,7 +7,11 @@
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag "welcome", media: "all" if controller.controller_name == "welcome" %>
+
+
     <%= javascript_importmap_tags %>
+    
   </head>
 
   <body>
