@@ -4,8 +4,7 @@ class WelcomeController < ApplicationController
   layout 'application'
 
   def index
-    @carros = Carro.all.order(updated_at:
-    :desc).limit(6)
+    @categorias = Categoria.all.order(:nome) # Ordena as categorias por nome
   end
 end
 

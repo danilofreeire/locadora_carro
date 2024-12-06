@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 namespace :dev do
   desc "Reseta o banco de dados"
   task reset: :environment do
@@ -12,13 +10,22 @@ namespace :dev do
 
   desc "Adiciona carros, clientes, reservas e pagamentos fake"
   task add_dados: :environment do
+    show_spinner("Adicionando Categorias...") { add_categorias }
     show_spinner("Adicionando Carros...") { add_carros }
     show_spinner("Adicionando Clientes...") { add_clientes }
     show_spinner("Adicionando Reservas...") { add_reservas }
     show_spinner("Adicionando Pagamentos...") { add_pagamentos }
   end
 
+  def add_categorias
+    categorias = %w[Sedan Hatch SUV Caminhonete Esportivo Luxo]
+    categorias.each do |categoria|
+      Categoria.find_or_create_by!(nome: categoria, descricao: "Categoria de veículos: #{categoria}")
+    end
+  end
+
   def add_carros
+    categorias = Categoria.all
     20.times do
       Carro.create!(
         marca: Faker::Vehicle.manufacture,
@@ -27,7 +34,8 @@ namespace :dev do
         cor: Faker::Vehicle.color,
         placa: Faker::Vehicle.license_plate,
         status: %w[disponível alugado manutenção].sample,
-        diaria: Faker::Commerce.price(range: 50..300)
+        diaria: Faker::Commerce.price(range: 50..300),
+        categoria: categorias.sample # Associa o carro a uma categoria aleatória
       )
     end
   end

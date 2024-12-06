@@ -6,7 +6,12 @@ module Administrate
     
     # GET /carros or /carros.json
     def index
-      @carros = Carro.all
+      if params[:categoria_id]
+        @categoria = Categoria.find(params[:categoria_id])
+        @carros = @categoria.carros
+      else
+        @carros = Carro.all
+      end
     end
 
     # GET /carros/1 or /carros/1.json

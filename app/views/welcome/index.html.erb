@@ -70,15 +70,13 @@
 
     <!-- Frota -->
     <div class="container mt-5">
-    <h2 class="text-center">Nossa Frota</h2>
+    <h2 class="text-center">Categorias</h2>
     <div class="row mt-4">
-        <% @carros.each do |carro| %>
-            <div class="col-md-4 mb-4"> <!-- Cada carro ocupa 4 colunas em uma linha -->
-                <%= render partial: "carros", locals: { carro: carro } %>
-            </div>
+        <% @categorias.each do |categoria| %>
+            <%= render partial: 'categoria', locals: { categoria: categoria } %>
         <% end %>
     </div>
-</div>
+    </div>
 
 
     <!-- Footer -->

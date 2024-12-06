@@ -45,6 +45,10 @@
     <%= form.label :diaria, style: "display: block" %>
     <%= form.text_field :diaria %>
   </div>
+  <div class="field">
+  <%= form.label :categoria_id, "Categoria" %>
+  <%= form.collection_select :categoria_id, Categoria.all, :id, :nome, prompt: "Selecione uma categoria" %>
+</div>
 
   <div>
     <%= form.submit %>
