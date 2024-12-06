@@ -12,14 +12,14 @@ Fazer Logoff
     <p>
       <%= link_to "Show this carro", [:administrate, carro] %>
     </p>
+    
   <% end %>
-  <p>Categoria: <%= carro.categoria.nome if carro.categoria %></p>
-  <h1>Carros da Categoria: <%= @categoria.nome %></h1>
-<% @carros.each do |carro| %>
-  <p><%= carro.nome %> - <%= carro.descricao %></p>
-<% end %>
+  
+  
+ 
 
 </div>
+
 
 <%= link_to "New carro", new_administrate_carro_path %>
 

@@ -1,16 +1,17 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  resources :categoria do
-    resources :carros, only: [:index]
-  end
   
+
   devise_for :admins
   get 'welcome/index'
 
   get "/inicio", to: "welcome#index"
 
   namespace :administrate do
+    resources :categoria do
+      resources :carros, only: [:index]
+    end
     resources :pagamentos
     resources :reservas
     resources :clientes

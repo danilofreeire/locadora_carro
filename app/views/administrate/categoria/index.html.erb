@@ -6,9 +6,9 @@
   <% @categoria.each do |categorium| %>
     <%= render categorium %>
     <p>
-      <%= link_to "Show this categoria", categorium %>
+      <%= link_to "Show this categoria", [:administrate, categorium] %>
     </p>
   <% end %>
 </div>
 
-<%= link_to "New categoria", new_categorium_path %>
+<%= link_to "New categoria", new_administrate_categorium_path %>

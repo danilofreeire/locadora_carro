@@ -29,9 +29,16 @@
     <%= carro.status %>
   </p>
 
+  
   <p>
     <strong>Diaria:</strong>
     <%= carro.diaria %>
   </p>
+  
+  <p>
+    <strong>Categoria:</strong>
+    <%= carro.categoria.nome if carro.categoria %>
+  </p>
+   
 
 </div>

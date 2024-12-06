@@ -1,4 +1,4 @@
-<%= form_with(model: categorium) do |form| %>
+<%= form_with(model: [:administrate, categorium]) do |form| %>
   <% if categorium.errors.any? %>
     <div style="color: red">
       <h2><%= pluralize(categorium.errors.count, "error") %> prohibited this categorium from being saved:</h2>
