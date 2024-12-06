@@ -1,0 +1,49 @@
+<%= stylesheet_link_tag "pages/login_admin", media: "all", "data-turbo-track": "reload" %>
+
+<section class="vh-100 gradient-custom">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+        <div class="card bg-light" style="border-radius: 1rem; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+          <div class="card-body p-5 text-center">
+            <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: "text-center" }) do |f| %>
+              <div class="mb-md-5 mt-md-4 pb-5">
+                <h2 class="fw-bold mb-2 text-uppercase">Sign Up</h2>
+                <p class="text-muted mb-5">Crie sua conta preenchendo as informações abaixo!</p>
+
+                <!-- Campo de Email -->
+                <div class="form-outline mb-4">
+                  <%= f.label :email, "Email", class: "form-label text-dark" %>
+                  <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control form-control-lg" %>
+                </div>
+
+                <!-- Campo de Senha -->
+                <div class="form-outline mb-4">
+                  <%= f.label :password, "Senha", class: "form-label text-dark" %>
+                  <% if @minimum_password_length %>
+                    <small class="text-muted">(Min: <%= @minimum_password_length %> caracteres)</small>
+                  <% end %>
+                  <%= f.password_field :password, autocomplete: "new-password", class: "form-control form-control-lg" %>
+                </div>
+
+                <!-- Campo de Confirmação de Senha -->
+                <div class="form-outline mb-4">
+                  <%= f.label :password_confirmation, "Confirme sua Senha", class: "form-label text-dark" %>
+                  <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control form-control-lg" %>
+                </div>
+
+                <!-- Botão de Cadastro -->
+                <%= f.submit "Sign Up", class: "btn btn-primary btn-lg px-5" %>
+              </div>
+            <% end %>
+
+            <!-- Link para login -->
+            <div>
+              <p class="mb-0">Já tem uma conta? <%= link_to "Login", new_session_path(resource_name), class: "text-primary fw-bold" %></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

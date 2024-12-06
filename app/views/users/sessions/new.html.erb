@@ -1,0 +1,55 @@
+<%= stylesheet_link_tag "pages/login_admin", media: "all", "data-turbo-track": "reload" %>
+
+<section class="vh-100 gradient-custom">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+        <div class="card bg-light" style="border-radius: 1rem; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+          <div class="card-body p-5 text-center">
+            <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "text-center" }) do |f| %>
+              <div class="mb-md-5 mt-md-4 pb-5">
+                <h2 class="fw-bold mb-2 text-uppercase">Login</h2>
+                <p class="text-muted mb-5">Digite seu email e senha!</p>
+
+                <!-- Campo de Email -->
+                <div class="form-outline mb-4">
+                  <%= f.label :email, "Email", class: "form-label text-dark" %>
+                  <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control form-control-lg" %>
+                </div>
+
+                <!-- Campo de Senha -->
+                <div class="form-outline mb-4">
+                  <%= f.label :password, "Senha", class: "form-label text-dark" %>
+                  <%= f.password_field :password, autocomplete: "current-password", class: "form-control form-control-lg" %>
+                </div>
+
+                <!-- Lembrar-me -->
+                <% if devise_mapping.rememberable? %>
+                  <div class="form-check form-switch mb-4">
+                    <%= f.check_box :remember_me, class: "form-check-input", id: "rememberMe" %>
+                    <%= f.label :remember_me, "Lembrar-me", class: "form-check-label", for: "rememberMe" %>
+                  </div>
+                <% end %>
+
+                <!-- Botão de Login -->
+                <%= f.submit "Login", class: "btn btn-primary btn-lg px-5" %>
+
+                <!-- Redes Sociais -->
+                <div class="d-flex justify-content-center text-center mt-4 pt-1">
+                  <a href="#!" class="text-primary"><i class="fab fa-facebook-f fa-lg"></i></a>
+                  <a href="#!" class="text-primary mx-4 px-2"><i class="fab fa-twitter fa-lg"></i></a>
+                  <a href="#!" class="text-primary"><i class="fab fa-google fa-lg"></i></a>
+                </div>
+              </div>
+            <% end %>
+
+            <!-- Link para cadastro -->
+            <div>
+              <p class="mb-0">Não tem uma conta? <%= link_to "Cadastre-se", new_registration_path(resource_name), class: "text-primary fw-bold" %></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

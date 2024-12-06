@@ -1,0 +1,43 @@
+.gradient-custom {
+  /* Fallback para navegadores antigos */
+  background: #004521;
+  
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: -webkit-linear-gradient(to right, rgba(0, 69, 33, 1), rgba(1, 96, 42, 1));
+  
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: linear-gradient(to right, rgba(0, 69, 33, 1), rgba(1, 96, 42, 1));
+}
+.card {
+  background-color: #ffffff; /* Fundo branco */
+  color: #333333; /* Texto em cinza escuro */
+  border-radius: 1rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombras suaves */
+}
+/* Estilo para os campos de entrada */
+.form-control {
+  border: 1px solid #cccccc; /* Borda cinza clara */
+  color: #333333; /* Texto cinza escuro */
+  background-color: #f8f9fa; /* Fundo cinza muito claro */
+}
+
+.form-control:focus {
+  border-color: #004521; /* Verde escuro no foco */
+  box-shadow: 0 0 0 0.2rem rgba(0, 69, 33, 0.25); /* Sombra verde suave */
+}
+
+/* Botão */
+.btn-primary {
+  background-color: #01602a; /* Fundo verde */
+  border-color: #004521; /* Borda verde escura */
+}
+
+.btn-primary:hover {
+  background-color: #004521; /* Fundo verde mais escuro ao passar o mouse */
+  border-color: #003b1f; /* Borda ainda mais escura */
+}
+
+/* Link */
+a.text-muted:hover {
+  color: #01602a; /* Cor verde ao passar o mouse */
+}

@@ -60,7 +60,7 @@ module Administrate
       @carro.destroy!
 
       respond_to do |format|
-        format.html { redirect_to(carros_path, status: :see_other, notice: "Carro was successfully destroyed.") }
+        format.html { redirect_to( administrate_carros_path, status: :see_other, notice: "Carro was successfully destroyed.") }
         format.json { head(:no_content) }
       end
     end
