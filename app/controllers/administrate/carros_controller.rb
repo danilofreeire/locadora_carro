@@ -6,6 +6,7 @@ module Administrate
     
     # GET /carros or /carros.json
     def index
+      @carros = Carro.page(params[:page]).per(10)
       if params[:categoria_id] # Filtra por categoria se o parâmetro for fornecido
         @categoria = Categoria.find_by(id: params[:categoria_id])
         @carros = @categoria&.carros || [] # Retorna os carros da categoria ou vazio se não existir
