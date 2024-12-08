@@ -1,10 +1,10 @@
-<%= form_with(model: [:administrate, categorium]) do |form| %>
-  <% if categorium.errors.any? %>
+<%= form_with(model: [:administrate, categoria]) do |form| %>
+  <% if categoria.errors.any? %>
     <div style="color: red">
-      <h2><%= pluralize(categorium.errors.count, "error") %> prohibited this categorium from being saved:</h2>
+      <h2><%= pluralize(categoria.errors.count, "error") %> prohibited this categoria from being saved:</h2>
 
       <ul>
-        <% categorium.errors.each do |error| %>
+        <% categoria.errors.each do |error| %>
           <li><%= error.full_message %></li>
         <% end %>
       </ul>

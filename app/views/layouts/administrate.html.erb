@@ -70,11 +70,12 @@
 
            <!-- Nav Item - Categorias -->
             <li class="nav-item">
-                <a class="nav-link" href="charts.html">
-                    <i class="fas fa-th-list"></i>
-                    <span>Categorias</span>
-                </a>
+            <%= link_to administrate_categorias_path, class: "nav-link" do %>
+                <i class="fas fa-th-list"></i>
+                <span>Categorias</span>
+            <% end %>
             </li>
+
 
             <!-- Nav Item - Carros -->
             <li class="nav-item">
