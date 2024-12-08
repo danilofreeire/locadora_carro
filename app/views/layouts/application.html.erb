@@ -7,13 +7,15 @@
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <%= stylesheet_link_tag "welcome", media: "all" if controller.controller_name == "welcome" %>
+    <%= stylesheet_link_tag "pages/welcome", media: "all" if controller.controller_name == "welcome" %>
     <%= stylesheet_link_tag "pages/login_admin", media: "all", "data-turbo-track": "reload" %>
     <%= favicon_link_tag asset_path("favicon.ico") %>
 
 
     <%= javascript_importmap_tags %>
-    
+    <%= javascript_include_tag "https://code.jquery.com/jquery-3.7.1.min.js", "data-turbo-track": "reload" %>
+    <%= javascript_include_tag "application", "data-turbo-track": "reload" %>
+ 
   </head>
 
   <body>

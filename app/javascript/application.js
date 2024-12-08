@@ -2,4 +2,6 @@
 import "@hotwired/turbo-rails"
 import "controllers"
 import "bootstrap"
+import "jquery";
+import "jquery-easing";
 import "sb-admin-2";

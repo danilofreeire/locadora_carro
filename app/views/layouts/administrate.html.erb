@@ -25,7 +25,7 @@
     <!-- Custom styles for this template-->
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= stylesheet_link_tag "sb-admin-2", "data-turbo-track": "reload" %>
-    <%= stylesheet_link_tag "welcome", "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag "pages/welcome", "data-turbo-track": "reload" %>
     
 
 </head>
@@ -140,42 +140,29 @@
               
 
                     <!-- Topbar Navbar -->
-                    <ul class="navbar-nav ml-auto">
+                    <!-- Topbar Navbar -->
+                                <ul class="navbar-nav ms-auto"> <!-- Troquei `ml-auto` por `ms-auto` para consistência com o Bootstrap mais recente -->
+                                <!-- Nav Item - User Information -->
+                                <li class="nav-item dropdown no-arrow">
+                                    <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="userDropdown" role="button"
+                                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <!-- Alterado para usar `data-bs-toggle` -->
+                                    <span class="me-2 d-none d-lg-inline text-gray-600 small">
+                                        <%= current_admin.nome %>
+                                    </span>
+                                    <i class="fas fa-user-circle fa-lg"></i> <!-- Adicionei um ícone ao lado do nome para melhor visual -->
+                                    </a>
+                                    <!-- Dropdown - User Information -->
+                                    <div class="dropdown-menu dropdown-menu-end shadow animated--grow-in"
+                                        aria-labelledby="userDropdown"> <!-- Alterado `dropdown-menu-right` para `dropdown-menu-end` -->
+                                   
+                                    <%= link_to destroy_admin_session_path, data: { turbo_method: :delete }, class: "dropdown-item" do %>
+                                        <i class="fas fa-sign-out-alt fa-sm fa-fw me-2 text-gray-400"></i>
+                                                Sair
+                                    <% end %>
+                                    </div>
+                                </li>
+                                </ul>
 
-
-                       
-
-                        <!-- Nav Item - User Information -->
-                        <li class="nav-item dropdown no-arrow">
-                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><%= current_admin.nome%> </span>
-                               
-                            </a>
-                            <!-- Dropdown - User Information -->
-                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Profile
-                                </a>
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Settings
-                                </a>
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Activity Log
-                                </a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
-                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Logout
-                                </a>
-                            </div>
-                        </li>
-
-                    </ul>
 
                 </nav>
                 <!-- End of Topbar -->
@@ -236,13 +223,8 @@
     <!-- Bootstrap core JavaScript-->
     <!-- Importmap -->
     <%= javascript_importmap_tags %>
-    
-    <script>
-        import "bootstrap";
-        import "jquery";
-        import "jquery-easing";
-        import "sb-admin-2";
-    </script>
+    <%= javascript_include_tag "https://code.jquery.com/jquery-3.7.1.min.js", "data-turbo-track": "reload" %>
+
 
 </body>
 

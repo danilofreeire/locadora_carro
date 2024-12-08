@@ -20,7 +20,7 @@ Prawn::Document.generate("reservas_lista.pdf", page_size: "A4", margin: 0) do |p
 
     # Dados da tabela
     data = Reserva.all.collect do |r|
-      [r.id, r.cliente.nome, r.carro.modelo, r.carro.placa, r.data_inicio, r.data_fim, r.status]
+      [r.id, r.cliente.nome, r.carro.modelo, r.carro.placa, I18n.l(r.data_inicio), I18n.l(r.data_fim), r.status]
     end
 
     # Estilizando e montando a tabela

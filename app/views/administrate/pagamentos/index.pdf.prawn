@@ -25,7 +25,7 @@ Prawn::Document.generate("pagamentos_lista.pdf", page_size: "A4", margin: 0) do 
       "R$ #{'%.2f' % p.valor}",
       p.reserva.status, 
       p.metodo_pagamento,
-      p.data_pagamento]
+      I18n.l(p.data_pagamento)]
     end
     
     # Estilizando e montando a tabela
