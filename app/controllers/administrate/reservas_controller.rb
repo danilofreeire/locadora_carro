@@ -30,7 +30,7 @@ module Administrate
 
       respond_to do |format|
         if @reserva.save
-          format.html { redirect_to(@reserva, notice: "Reserva was successfully created.") }
+          format.html { redirect_to([:administrate, @reserva], notice: "Reserva was successfully created.") }
           format.json { render(:show, status: :created, location: @reserva) }
         else
           format.html { render(:new, status: :unprocessable_entity) }
@@ -43,7 +43,7 @@ module Administrate
     def update
       respond_to do |format|
         if @reserva.update(reserva_params)
-          format.html { redirect_to(@reserva, notice: "Reserva was successfully updated.") }
+          format.html { redirect_to([:administrate,@reserva], notice: "Reserva was successfully updated.") }
           format.json { render(:show, status: :ok, location: @reserva) }
         else
           format.html { render(:edit, status: :unprocessable_entity) }

@@ -30,7 +30,7 @@ module Administrate
 
       respond_to do |format|
         if @pagamento.save
-          format.html { redirect_to(@pagamento, notice: "Pagamento was successfully created.") }
+          format.html { redirect_to([:administrate, @pagamento], notice: "Pagamento was successfully created.") }
           format.json { render(:show, status: :created, location: @pagamento) }
         else
           format.html { render(:new, status: :unprocessable_entity) }
@@ -43,7 +43,7 @@ module Administrate
     def update
       respond_to do |format|
         if @pagamento.update(pagamento_params)
-          format.html { redirect_to(@pagamento, notice: "Pagamento was successfully updated.") }
+          format.html { redirect_to([:administrate, @pagamento], notice: "Pagamento was successfully updated.") }
           format.json { render(:show, status: :ok, location: @pagamento) }
         else
           format.html { render(:edit, status: :unprocessable_entity) }
