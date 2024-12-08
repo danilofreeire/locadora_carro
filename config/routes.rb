@@ -2,14 +2,11 @@
 
 Rails.application.routes.draw do
   devise_for :users
-  
 
   devise_for :admins
-  get 'welcome/index'
+  get "welcome/index"
 
   get "/inicio", to: "welcome#index"
-
-
 
   namespace :administrate do
     resources :pagamentos
@@ -18,14 +15,12 @@ Rails.application.routes.draw do
     resources :carros do
       member do
         delete "destroy_cover_image"
-      end 
+      end
     end
 
-    
     resources :categoria do
       resources :carros, only: [:index]
     end
-    
   end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

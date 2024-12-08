@@ -1,6 +1,6 @@
 # frozen_string_literal: true
-module Administrate
 
+module Administrate
   class ReservasController < ApplicationController
     before_action :authenticate_admin!
     before_action :set_reserva, only: [:show, :edit, :update, :destroy]
@@ -55,7 +55,9 @@ module Administrate
       @reserva.destroy!
 
       respond_to do |format|
-        format.html { redirect_to( administrate_reservas_path, status: :see_other, notice: "Reserva was successfully destroyed.") }
+        format.html do
+          redirect_to(administrate_reservas_path, status: :see_other, notice: "Reserva was successfully destroyed.")
+        end
         format.json { head(:no_content) }
       end
     end

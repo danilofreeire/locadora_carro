@@ -1,26 +1,65 @@
 <p style="color: green"><%= notice %></p>
 
-<%= link_to destroy_admin_session_path, data: { turbo_method: :delete } do %>
-Fazer Logoff
-<% end %>
+<div class="d-flex justify-content-end mb-3">
+  <%= link_to "Novo Carro", new_administrate_carro_path, class: "btn btn-new" %>
+  <%= link_to "Fazer Logoff", destroy_admin_session_path, data: { turbo_method: :delete }, class: "btn btn-danger ms-2" %>
+</div>
 
-<h1>Carros</h1>
+<h1 class="text-center">Carros</h1>
 
-<div id="carros">
-  <% @carros.each do |carro| %>
-    <%= render carro %>
-    <p>
-      <%= link_to "Show this carro", [:administrate, carro] %>
-    </p>
-    
-  <% end %>
-  
-  
+<div class="table-responsive">
+  <table class="table table-striped table-hover">
+    <thead class="table-success">
+      <tr>
+        <th>#</th>
+        <th>Marca</th>
+        <th>Modelo</th>
+        <th>Ano</th>
+        <th>Cor</th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @carros.each_with_index do |carro, index| %>
+        <tr>
+          <td><%= index + 1 %></td>
+          <td><%= carro.marca %></td>
+          <td><%= carro.modelo %></td>
+          <td><%= carro.ano %></td>
+          <td><%= carro.cor %></td>
+          <td>
+
+                <div class="d-flex justify-content-start align-items-center">
+                  <%= link_to [:administrate, carro], title: "Visualizar", alt: "eye", class: "me-2" do %>
+                    <%= image_tag 'icons/gray/eye.svg' %>
+                  <% end %>
+
+                  <%= link_to edit_administrate_carro_path(carro), title: "Editar", class: "me-2" do %>
+                    <%= image_tag 'icons/gray/edit.svg' %>
+                  <% end %>
+
+                  <%= button_to [:administrate, carro], 
+                                data: { turbo: false }, 
+                                method: :delete, 
+                                title: "Apagar", 
+                                alt: "close", 
+                                style: "border: none; background: transparent; padding: 0;" do %>
+                    <%= image_tag 'icons/gray/close.svg' %>
+                  <% end %>
+                </div>
+
+
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
  
 
 </div>
 
 
-<%= link_to "New carro", new_administrate_carro_path %>
-<%= paginate @carros %>
 
+<div style="display: flex; justify-content: center; margin-top: 20px;">
+  <%= paginate @carros %>
+</div>

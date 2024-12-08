@@ -1,6 +1,6 @@
 # frozen_string_literal: true
-module Administrate
 
+module Administrate
   class ClientesController < ApplicationController
     before_action :authenticate_admin!
     before_action :set_cliente, only: [:show, :edit, :update, :destroy]
@@ -55,7 +55,9 @@ module Administrate
       @cliente.destroy!
 
       respond_to do |format|
-        format.html { redirect_to( administrate_clientes_path, status: :see_other, notice: "Cliente was successfully destroyed.") }
+        format.html do
+          redirect_to(administrate_clientes_path, status: :see_other, notice: "Cliente was successfully destroyed.")
+        end
         format.json { head(:no_content) }
       end
     end
@@ -64,7 +66,7 @@ module Administrate
 
     # Use callbacks to share common setup or constraints between actions.
     def set_cliente
-      Rails.logger.debug "Parâmetro recebido: #{params[:id]}"
+      Rails.logger.debug("Parâmetro recebido: #{params[:id]}")
 
       @cliente = Cliente.find(params[:id])
     end

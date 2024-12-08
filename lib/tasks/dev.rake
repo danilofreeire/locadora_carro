@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 namespace :dev do
   desc "Reseta o banco de dados"
   task reset: :environment do
@@ -18,7 +20,7 @@ namespace :dev do
   end
 
   def add_categorias
-    categorias = %w[Sedan Hatch SUV Caminhonete Esportivo Luxo]
+    categorias = ["Sedan", "Hatch", "SUV", "Caminhonete", "Esportivo", "Luxo"]
     categorias.each do |categoria|
       Categoria.find_or_create_by!(nome: categoria, descricao: "Categoria de veículos: #{categoria}")
     end
@@ -33,9 +35,9 @@ namespace :dev do
         ano: Faker::Vehicle.year,
         cor: Faker::Vehicle.color,
         placa: Faker::Vehicle.license_plate,
-        status: %w[disponível alugado manutenção].sample,
+        status: ["disponível", "alugado", "manutenção"].sample,
         diaria: Faker::Commerce.price(range: 50..300),
-        categoria: categorias.sample # Associa o carro a uma categoria aleatória
+        categoria: categorias.sample, # Associa o carro a uma categoria aleatória
       )
     end
   end
@@ -46,14 +48,14 @@ namespace :dev do
         nome: Faker::Name.name,
         email: Faker::Internet.email,
         telefone: Faker::PhoneNumber.cell_phone,
-        endereco: Faker::Address.full_address
+        endereco: Faker::Address.full_address,
       )
     end
   end
 
   def add_reservas
     50.times do
-      carro = Carro.where(status: 'disponível').sample
+      carro = Carro.where(status: "disponível").sample
       next unless carro # Garante que existe um carro disponível
 
       cliente = Cliente.all.sample
@@ -67,22 +69,22 @@ namespace :dev do
         data_inicio: data_inicio,
         data_fim: data_fim,
         preco_total: preco_total,
-        status: %w[ativa concluída cancelada].sample
+        status: ["ativa", "concluída", "cancelada"].sample,
       )
 
       # Atualiza o status do carro para "alugado"
-      carro.update!(status: 'alugado') if carro
+      carro&.update!(status: "alugado")
     end
   end
 
   def add_pagamentos
-    Reserva.all.each do |reserva|
+    Reserva.all.find_each do |reserva|
       Pagamento.create!(
         reserva_id: reserva.id,
         valor: reserva.preco_total,
-        status: %w[pendente pago atrasado].sample,
-        metodo_pagamento: %w[cartão boleto pix dinheiro].sample,
-        data_pagamento: reserva.status == 'concluída' ? Faker::Date.backward(days: 10) : nil
+        status: ["pendente", "pago", "atrasado"].sample,
+        metodo_pagamento: ["cartão", "boleto", "pix", "dinheiro"].sample,
+        data_pagamento: reserva.status == "concluída" ? Faker::Date.backward(days: 10) : nil,
       )
     end
   end

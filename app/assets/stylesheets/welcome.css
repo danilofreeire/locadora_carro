@@ -20,11 +20,25 @@
 .btn-primary {
   background-color: #ffffff;
   border-color: #004521;
-  color: black;
+  color: rgb(255, 255, 255);
 }
 
 .btn-primary:hover {
   background-color:#004521;
+}
+
+
+
+.btn-new {
+  background-color: #004521;
+  border-color: #004521;
+  color: rgb(255, 255, 255);
+}
+
+.btn-new:hover {
+  background-color:#018f46;
+  color: rgb(255, 255, 255);
+
 }
 .advantages-icon {
   font-size: 2rem;

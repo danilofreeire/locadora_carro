@@ -41,9 +41,9 @@ module LocadoraCarros
     # Don't generate system test files.
     config.generators.system_tests = nil
 
-    #I18N
-    config.i18n.default_locale= :"pt-BR"
-    #active_storage
+    # I18N
+    config.i18n.default_locale = :"pt-BR"
+    # active_storage
     config.active_storage.variant_processor = :mini_magick
   end
 end

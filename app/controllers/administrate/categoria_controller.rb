@@ -1,6 +1,6 @@
 # frozen_string_literal: true
-module Administrate
 
+module Administrate
   class CategoriaController < ApplicationController
     before_action :set_categorium, only: [:show, :edit, :update, :destroy]
 
@@ -56,7 +56,11 @@ module Administrate
 
       respond_to do |format|
         format.html do
-          redirect_to( administrate_categoria_index_path, status: :see_other, notice: "Categoria was successfully destroyed.")
+          redirect_to(
+            administrate_categoria_index_path,
+            status: :see_other,
+            notice: "Categoria was successfully destroyed.",
+          )
         end
         format.json { head(:no_content) }
       end
