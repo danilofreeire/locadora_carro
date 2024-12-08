@@ -10,7 +10,7 @@ module Administrate
 
     # GET /categoria or /categoria.json
     def index
-      @categoria = Categoria.all
+      @categorias = Categoria.page(params[:page]).per(10)
     end
 
     # GET /categoria/1 or /categoria/1.json

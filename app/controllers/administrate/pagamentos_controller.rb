@@ -4,9 +4,11 @@ module Administrate
   class PagamentosController < ApplicationController
     before_action :authenticate_admin!
     before_action :set_pagamento, only: [:show, :edit, :update, :destroy]
+    layout "administrate"
+
     # GET /pagamentos or /pagamentos.json
     def index
-      @pagamentos = Pagamento.all
+      @pagamentos = Pagamento.page(params[:page]).per(10)
     end
 
     # GET /pagamentos/1 or /pagamentos/1.json

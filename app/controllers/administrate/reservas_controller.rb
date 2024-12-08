@@ -4,9 +4,11 @@ module Administrate
   class ReservasController < ApplicationController
     before_action :authenticate_admin!
     before_action :set_reserva, only: [:show, :edit, :update, :destroy]
+    layout "administrate"
+
     # GET /reservas or /reservas.json
     def index
-      @reservas = Reserva.all
+      @reservas = Reserva.page(params[:page]).per(10)
     end
 
     # GET /reservas/1 or /reservas/1.json

@@ -20,6 +20,7 @@
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
+    <%= favicon_link_tag asset_path("favicon.ico") %>
 
     <!-- Custom styles for this template-->
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
@@ -39,8 +40,8 @@
 
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
-                <div class="sidebar-brand-icon rotate-n-15">
-                    <i class="fas fa-laugh-wink"></i>
+                <div class="sidebar-brand-icon">
+                    <%= image_tag 'logo', size: "40x40" %>
                 </div>
                 <div class="sidebar-brand-text mx-3"> Locafácil</div>
             </a>
@@ -79,34 +80,35 @@
 
             <!-- Nav Item - Carros -->
             <li class="nav-item">
-                <a class="nav-link" href="tables.html">
-                    <i class="fas fa-car"></i>
-                    <span>Carros</span>
-                </a>
+            <%= link_to administrate_carros_path, class: "nav-link" do %>
+                <i class="fas fa-car"></i>
+                <span>Carros</span>
+            <% end %>
             </li>
+            
 
             <!-- Nav Item - Clientes -->
             <li class="nav-item">
-                <a class="nav-link" href="tables.html">
+            <%= link_to administrate_clientes_path, class: "nav-link" do %>
                     <i class="fas fa-user"></i>
                     <span>Clientes</span>
-                </a>
+            <% end %>
             </li>
 
             <!-- Nav Item - Reservas -->
             <li class="nav-item">
-                <a class="nav-link" href="tables.html">
+            <%= link_to administrate_reservas_path, class: "nav-link" do %>
                     <i class="fas fa-calendar-check"></i>
                     <span>Reservas</span>
-                </a>
+            <% end %>
             </li>
 
             <!-- Nav Item - Pagamentos -->
             <li class="nav-item">
-                <a class="nav-link" href="tables.html">
+            <%= link_to administrate_pagamentos_path, class: "nav-link" do %>
                     <i class="fas fa-credit-card"></i>
                     <span>Pagamentos</span>
-                </a>
+            <% end %>
             </li>
 
 

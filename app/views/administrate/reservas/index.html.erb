@@ -12,3 +12,6 @@
 </div>
 
 <%= link_to "New reserva", new_administrate_reserva_path %>
+<div style="display: flex; justify-content: center; margin-top: 20px;">
+  <%= paginate @reservas %>
+</div>

@@ -4,9 +4,11 @@ module Administrate
   class ClientesController < ApplicationController
     before_action :authenticate_admin!
     before_action :set_cliente, only: [:show, :edit, :update, :destroy]
+    layout "administrate"
+
     # GET /clientes or /clientes.json
     def index
-      @clientes = Cliente.all
+      @clientes = Cliente.page(params[:page]).per(10)
     end
 
     # GET /clientes/1 or /clientes/1.json

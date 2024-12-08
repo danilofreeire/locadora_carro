@@ -18,7 +18,7 @@
       </tr>
     </thead>
     <tbody>
-      <% @categoria.each_with_index do |categoria, index| %>
+      <% @categorias.each_with_index do |categoria, index| %>
         <tr>
           <td><%= index + 1 %></td>
           <td><%= categoria.nome %></td>
@@ -49,3 +49,6 @@
   </table>
 </div>
 
+<div style="display: flex; justify-content: center; margin-top: 20px;">
+  <%= paginate @categorias %>
+</div>
