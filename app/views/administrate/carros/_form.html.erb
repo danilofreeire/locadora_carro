@@ -45,11 +45,20 @@
     <%= form.label :diaria, style: "display: block" %>
     <%= form.text_field :diaria %>
   </div>
-  
+
   <div>
     <%= form.label :cover_image, style: "display: block" %>
     <%= form.file_field :cover_image %>
   </div>
+  <div id=<%= dom_id(carro) %>>
+
+      <%= image_tag carro.cover_image.variant(:thumb) if carro.cover_image.attached? %>
+      <%= link_to "Remover",
+            destroy_cover_image_administrate_carro_path(carro),
+            data: { "turbo-confirm": "Tem certeza?", "turbo-method": :delete } if carro.cover_image.attached? %>
+  </div>
+
+
 
 
   <div class="field">

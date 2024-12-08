@@ -9,11 +9,18 @@ Rails.application.routes.draw do
 
   get "/inicio", to: "welcome#index"
 
+
+
   namespace :administrate do
     resources :pagamentos
     resources :reservas
     resources :clientes
-    resources :carros
+    resources :carros do
+      member do
+        delete "destroy_cover_image"
+      end 
+    end
+
     
     resources :categoria do
       resources :carros, only: [:index]

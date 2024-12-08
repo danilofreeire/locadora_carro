@@ -2,7 +2,7 @@
 module Administrate
   class CarrosController < ApplicationController
     before_action :authenticate_admin!
-    before_action :set_carro, only: [:show, :edit, :update, :destroy]
+    before_action :set_carro, only: [:show, :edit, :update, :destroy, :destroy_cover_image]
     
     # GET /carros or /carros.json
     def index
@@ -14,6 +14,17 @@ module Administrate
       #   @carros = Carro.includes(:categoria).all
       # end
     end
+
+
+
+    def destroy_cover_image
+      @carro.cover_image.purge
+      respond_to do |format|
+        format.turbo_stream { render(turbo_stream: turbo_stream.remove(@carro)) }
+      end
+    end
+
+
 
     # GET /carros/1 or /carros/1.json
     def show
