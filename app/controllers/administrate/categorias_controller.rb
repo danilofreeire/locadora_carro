@@ -60,7 +60,7 @@ module Administrate
           if @categoria.carros.count > 0
             redirect_to(
               administrate_categorias_path,
-              notice: "Existem artigos cadastrados nessa categorias. Não é possível apagar",
+              notice: "Existem carros cadastrados nessa categorias. Não é possível apagar",
             )
           else
             @categoria.destroy!

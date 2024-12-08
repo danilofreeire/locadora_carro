@@ -8,7 +8,7 @@ module Administrate
 
     # GET /reservas or /reservas.json
     def index
-      @reservas = Reserva.page(params[:page]).per(10)
+      @reservas = Reserva.includes(:carro, :cliente).page(params[:page]).per(10)
     end
 
     # GET /reservas/1 or /reservas/1.json
@@ -54,11 +54,18 @@ module Administrate
 
     # DELETE /reservas/1 or /reservas/1.json
     def destroy
-      @reserva.destroy!
-
       respond_to do |format|
         format.html do
-          redirect_to(administrate_reservas_path, status: :see_other, notice: "Reserva was successfully destroyed.")
+          if @reserva.carro|| @reserva.cliente > 0
+            redirect_to(
+              administrate_reservas_path,
+              notice: "Já há um carro reservado. Não é possível apagar",
+            )
+          else
+            @reserva.destroy!
+            redirect_to(administrate_reservas_path, status: :see_other, notice: "Reserva foi apagada.")
+          end    
+
         end
         format.json { head(:no_content) }
       end

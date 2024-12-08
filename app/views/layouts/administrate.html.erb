@@ -223,8 +223,15 @@
     <!-- Bootstrap core JavaScript-->
     <!-- Importmap -->
     <%= javascript_importmap_tags %>
-    <%= javascript_include_tag "https://code.jquery.com/jquery-3.7.1.min.js", "data-turbo-track": "reload" %>
-
+     <%= javascript_include_tag "https://code.jquery.com/jquery-3.7.1.min.js", "data-turbo-track": "reload" %>
+    <%= javascript_include_tag "application", "data-turbo-track": "reload" %>
+     
+    <script>
+        import "bootstrap";
+        import "jquery";
+        import "jquery-easing";
+        import "sb-admin-2";
+    </script>
 
 </body>
 
