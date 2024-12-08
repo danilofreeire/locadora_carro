@@ -1,4 +1,4 @@
-<%= form_with(model: [:administratem, pagamento]) do |form| %>
+<%= form_with(model: [:administrate, pagamento]) do |form| %>
   <% if pagamento.errors.any? %>
     <div style="color: red">
       <h2><%= pluralize(pagamento.errors.count, "error") %> prohibited this pagamento from being saved:</h2>

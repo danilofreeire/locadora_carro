@@ -10,7 +10,7 @@
     </p>
   <% end %>
 </div>
-
+<%= link_to "Exportar PDF", administrate_pagamentos_path(format: :pdf), class: "btn btn-new", target: "_blank"%>
 <%= link_to "New pagamento", new_administrate_pagamento_path %>
 <div style="display: flex; justify-content: center; margin-top: 20px;">
   <%= paginate @pagamentos %>

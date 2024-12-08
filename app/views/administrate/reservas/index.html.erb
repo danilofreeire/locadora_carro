@@ -10,7 +10,7 @@
     </p>
   <% end %>
 </div>
-
+<%= link_to "Exportar PDF", administrate_reservas_path(format: :pdf), class: "btn btn-new", target: "_blank"%>
 <%= link_to "New reserva", new_administrate_reserva_path %>
 <div style="display: flex; justify-content: center; margin-top: 20px;">
   <%= paginate @reservas %>

@@ -1,8 +1,9 @@
 <p style="color: green"><%= notice %></p>
 
 <div class="d-flex justify-content-end mb-3">
+    <%= link_to "Exportar PDF", administrate_carros_path(format: :pdf), class: "btn btn-new", target: "_blank"%>
+
   <%= link_to "Novo Carro", new_administrate_carro_path, class: "btn btn-new" %>
-  <%= link_to "Exportar PDF", administrate_carros_path(format: :pdf), class: "btn btn-new", target: "_blank"%>
 
   <%= link_to "Fazer Logoff", destroy_admin_session_path, data: { turbo_method: :delete }, class: "btn btn-danger ms-2" %>
 </div>

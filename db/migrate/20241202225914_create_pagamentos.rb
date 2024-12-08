@@ -7,7 +7,7 @@ class CreatePagamentos < ActiveRecord::Migration[7.1]
       t.decimal(:valor)
       t.string(:status)
       t.string(:metodo_pagamento)
-      t.datetime(:data_pagamento)
+      t.date(:data_pagamento)
 
       t.timestamps
     end

@@ -69,7 +69,7 @@ namespace :dev do
         data_inicio: data_inicio,
         data_fim: data_fim,
         preco_total: preco_total,
-        status: ["ativa", "concluída", "cancelada"].sample,
+        status: ["pendente", "pago", "atrasado"].sample,
       )
 
       # Atualiza o status do carro para "alugado"
@@ -79,13 +79,15 @@ namespace :dev do
 
   def add_pagamentos
     Reserva.all.find_each do |reserva|
+    status = ["pendente", "pago", "atrasado"].sample
+    data_pagamento = status == "pago" ? Faker::Date.backward(days: 10) : Faker::Date.forward(days: 5)
       Pagamento.create!(
         reserva_id: reserva.id,
         valor: reserva.preco_total,
-        status: ["pendente", "pago", "atrasado"].sample,
+        status: status,
         metodo_pagamento: ["cartão", "boleto", "pix", "dinheiro"].sample,
-        data_pagamento: reserva.status == "concluída" ? Faker::Date.backward(days: 10) : nil,
-      )
+        data_pagamento: data_pagamento
+        )
     end
   end
 
