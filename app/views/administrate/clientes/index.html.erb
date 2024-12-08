@@ -1,17 +1,61 @@
 <p style="color: green"><%= notice %></p>
 
-<h1>Clientes</h1>
+<div class="d-flex justify-content-end mb-3">
+  <%= link_to "Exportar PDF", administrate_clientes_path(format: :pdf), class: "btn btn-new me-2", target: "_blank" %>
 
-<div id="clientes">
-  <% @clientes.each do |cliente| %>
-    <%= render cliente %>
-    <p>
-      <%= link_to "Show this cliente", [:administrate, cliente] %>
-    </p>
-  <% end %>
+  <%= link_to "Novo Cliente", new_administrate_cliente_path, class: "btn btn-new me-2" %>
+
+  <%= link_to "Fazer Logoff", destroy_admin_session_path, data: { turbo_method: :delete }, class: "btn btn-danger ms-2" %>
 </div>
-<%= link_to "Exportar PDF", administrate_clientes_path(format: :pdf), class: "btn btn-new", target: "_blank"%>
-<%= link_to "New cliente", new_administrate_cliente_path %>
+
+<h1 class="text-center">Clientes</h1>
+
+<div class="table-responsive">
+  <table class="table table-striped table-hover">
+    <thead class="table-success">
+      <tr>
+        <th>#</th>
+        <th>Nome</th>
+        <th>Email</th>
+        <th>Telefone</th>
+        <th>Endereço</th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @clientes.each_with_index do |cliente, index| %>
+        <tr>
+          <td><%= index + 1 %></td>
+          <td><%= cliente.nome %></td>
+          <td><%= cliente.email %></td>
+          <td><%= cliente.telefone %></td>
+          <td><%= cliente.endereco %></td>
+          <td>
+            <div class="d-flex justify-content-start align-items-center">
+              <%= link_to [:administrate, cliente], title: "Visualizar", alt: "eye", class: "me-2" do %>
+                <%= image_tag 'icons/gray/eye.svg' %>
+              <% end %>
+
+              <%= link_to edit_administrate_cliente_path(cliente), title: "Editar", class: "me-2" do %>
+                <%= image_tag 'icons/gray/edit.svg' %>
+              <% end %>
+
+              <%= button_to [:administrate, cliente], 
+                            data: { turbo: false }, 
+                            method: :delete, 
+                            title: "Apagar", 
+                            alt: "close", 
+                            style: "border: none; background: transparent; padding: 0;" do %>
+                <%= image_tag 'icons/gray/close.svg' %>
+              <% end %>
+            </div>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
 <div style="display: flex; justify-content: center; margin-top: 20px;">
   <%= paginate @clientes %>
 </div>

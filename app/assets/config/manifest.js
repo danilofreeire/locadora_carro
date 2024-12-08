@@ -2,7 +2,7 @@
 //= link_directory ../stylesheets .css
 //= link_tree ../../javascript .js
 //= link pages/login_admin.css
-//= link welcome.css
+//= link pages/welcome.css
 //= link sb-admin-2.css
 //= link sb-admin-2.min.js
 //= link @fortawesome--fontawesome-free.js
