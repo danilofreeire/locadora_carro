@@ -7,12 +7,12 @@ module Administrate
     # GET /carros or /carros.json
     def index
       @carros = Carro.page(params[:page]).per(10)
-      if params[:categoria_id] # Filtra por categoria se o parâmetro for fornecido
-        @categoria = Categoria.find_by(id: params[:categoria_id])
-        @carros = @categoria&.carros || [] # Retorna os carros da categoria ou vazio se não existir
-      else
-        @carros = Carro.includes(:categoria).all
-      end
+      # if params[:categoria_id] # Filtra por categoria se o parâmetro for fornecido
+      #   @categoria = Categoria.find_by(id: params[:categoria_id])
+      #   @carros = @categoria&.carros || [] # Retorna os carros da categoria ou vazio se não existir
+      # else
+      #   @carros = Carro.includes(:categoria).all
+      # end
     end
 
     # GET /carros/1 or /carros/1.json
@@ -31,6 +31,7 @@ module Administrate
     # POST /carros or /carros.json
     def create
       @carro = Carro.new(carro_params)
+      @carro.cover_image.attach(carro_params[:cover_image])
 
       respond_to do |format|
         if @carro.save
@@ -75,7 +76,7 @@ module Administrate
 
     # Only allow a list of trusted parameters through.
     def carro_params
-      params.require(:carro).permit(:marca, :modelo, :ano, :cor, :placa, :status, :diaria, :categoria_id)
+      params.require(:carro).permit(:marca, :modelo, :ano, :cor, :placa, :status, :diaria, :categoria_id, :cover_image)
     end
   end
 end

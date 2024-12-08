@@ -23,6 +23,8 @@ pt-BR:
         diaria: Diaria
         created_at: Criado em
         updated_at: Atualizado em
+        cover_image: Imagem de capa
+
       cliente:
         id: Identificador
         nome: Nome

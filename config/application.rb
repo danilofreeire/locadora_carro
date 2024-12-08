@@ -43,5 +43,7 @@ module LocadoraCarros
 
     #I18N
     config.i18n.default_locale= :"pt-BR"
+    #active_storage
+    config.active_storage.variant_processor = :mini_magick
   end
 end

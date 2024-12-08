@@ -78,7 +78,13 @@ Rails.application.configure do
   
   #config devise
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+
+  # Store files locally.
+  config.active_storage.service = :local
+
   config.generators.after_generate do |files|
     system("bundle exec rubocop -A --fail-level=E #{files.shelljoin}", exception: true)
   end
+
+
 end

@@ -40,5 +40,8 @@
     <%= carro.categoria.nome if carro.categoria %>
   </p>
    
-
+  <p>
+    <strong>Cover:</strong>
+    <%= image_tag carro.cover_image.variant(:thumb) if carro.cover_image.attached? %>
+  </p>
 </div>
