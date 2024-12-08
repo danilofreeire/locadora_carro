@@ -77,4 +77,5 @@ gem "bootstrap"
 gem "sassc-rails"
 gem "kaminari"
 gem "image_processing", ">= 1.2"
-gem 'kaminari-i18n'
+gem "kaminari-i18n"
+gem "prawn-rails"

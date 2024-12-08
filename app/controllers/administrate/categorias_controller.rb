@@ -1,9 +1,8 @@
 # frozen_string_literal: true
 
 module Administrate
-  class CategoriasController < ApplicationController    
+  class CategoriasController < ApplicationController
     before_action :authenticate_admin!
-    
 
     before_action :set_categoria, only: [:show, :edit, :update, :destroy]
     layout "administrate"
@@ -32,7 +31,7 @@ module Administrate
 
       respond_to do |format|
         if @categoria.save
-          format.html { redirect_to([:administrate,@categoria], notice: "Categoria was successfully created.") }
+          format.html { redirect_to([:administrate, @categoria], notice: "Categoria was successfully created.") }
           format.json { render(:show, status: :created, location: @categoria) }
         else
           format.html { render(:new, status: :unprocessable_entity) }

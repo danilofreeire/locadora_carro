@@ -30,7 +30,7 @@ module Administrate
 
       respond_to do |format|
         if @cliente.save
-          format.html { redirect_to([:administrate,@cliente], notice: "Cliente was successfully created.") }
+          format.html { redirect_to([:administrate, @cliente], notice: "Cliente was successfully created.") }
           format.json { render(:show, status: :created, location: @cliente) }
         else
           format.html { render(:new, status: :unprocessable_entity) }
@@ -43,7 +43,7 @@ module Administrate
     def update
       respond_to do |format|
         if @cliente.update(cliente_params)
-          format.html { redirect_to([:administrate,@cliente], notice: "Cliente was successfully updated.") }
+          format.html { redirect_to([:administrate, @cliente], notice: "Cliente was successfully updated.") }
           format.json { render(:show, status: :ok, location: @cliente) }
         else
           format.html { render(:edit, status: :unprocessable_entity) }
