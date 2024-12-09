@@ -11,16 +11,22 @@
     <%= stylesheet_link_tag "pages/login_admin", media: "all", "data-turbo-track": "reload" %>
     <%= favicon_link_tag asset_path("favicon.ico") %>
 
-
     <%= javascript_importmap_tags %>
     <%= javascript_include_tag "https://code.jquery.com/jquery-3.7.1.min.js", "data-turbo-track": "reload" %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload" %>
- 
   </head>
 
   <body>
+    <div class="header">
+      <div class="d-flex justify-content-end mb-3">
+        <% if user_signed_in? %>
+          <%= link_to "Minhas Reservas", administrate_reservas_path, class: "btn btn-new me-2" %>
+        <% else %>
+          <%= link_to "Minhas Reservas - Faça Login", new_user_session_path, class: "btn btn-new me-2" %>
+        <% end %>
+      </div>
+    </div>
     
-
     <%= yield %>
   </body>
 </html>

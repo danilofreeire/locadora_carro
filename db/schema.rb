@@ -87,7 +87,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_12_09_125957) do
     t.decimal "valor"
     t.string "status"
     t.string "metodo_pagamento"
-    t.datetime "data_pagamento", default: -> { "CURRENT_TIMESTAMP" }
+    t.date "data_pagamento", default: -> { "CURRENT_TIMESTAMP" }
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["reserva_id"], name: "index_pagamentos_on_reserva_id"

@@ -11,7 +11,7 @@ namespace :dev do
   end
 
   desc "Adiciona carros, clientes, reservas e pagamentos fake"
-  task add_dados: :environment do
+  task add_dados: :environment dor
     show_spinner("Adicionando Categorias...") { add_categorias }
     show_spinner("Adicionando Carros...") { add_carros }
     show_spinner("Adicionando Clientes...") { add_clientes }

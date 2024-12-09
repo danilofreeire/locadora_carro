@@ -3,6 +3,7 @@
 class Reserva < ApplicationRecord
   belongs_to :cliente
   belongs_to :carro
+  belongs_to :user
   has_one :pagamento, dependent: :destroy #qnd excluir uma reserva, exclui o pagamento tb
 
   validates :cliente, presence: true
