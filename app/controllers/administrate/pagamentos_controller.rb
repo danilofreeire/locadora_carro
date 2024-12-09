@@ -8,7 +8,7 @@ module Administrate
 
     # GET /pagamentos or /pagamentos.json
     def index
-      @pagamentos = Pagamento.includes(:reserva).page(params[:page]).per(10)
+      @pagamentos = Pagamento.includes(reserva: :cliente).page(params[:page]).per(10)
     end
 
     # GET /pagamentos/1 or /pagamentos/1.json
