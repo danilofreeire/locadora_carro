@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_12_08_195755) do
+ActiveRecord::Schema[7.1].define(version: 2024_12_09_125957) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -87,7 +87,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_12_08_195755) do
     t.decimal "valor"
     t.string "status"
     t.string "metodo_pagamento"
-    t.datetime "data_pagamento"
+    t.datetime "data_pagamento", default: -> { "CURRENT_TIMESTAMP" }
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["reserva_id"], name: "index_pagamentos_on_reserva_id"
