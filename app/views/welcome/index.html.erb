@@ -16,15 +16,7 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto">
-                <% if user_signed_in? %>
-                    <li class="nav-item">
-                        <%= link_to "Ver Minhas Reservas", administrate_reservas_path, class: "nav-link" %>
-                    </li>
-                <% else %>
-                    <li class="nav-item">
-                        <%= link_to "Login para Ver Minhas Reservas", new_user_session_path, class: "nav-link" %>
-                    </li>
-                <% end %>
+                 <%= link_to "Faça Login", new_user_session_path, class: "btn btn-new me-2" %>
             </ul>
         </div>
     </header>

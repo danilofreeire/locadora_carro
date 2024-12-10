@@ -19,11 +19,7 @@
   <body>
     <div class="header">
       <div class="d-flex justify-content-end mb-3">
-        <% if user_signed_in? %>
-          <%= link_to "Minhas Reservas", administrate_reservas_path, class: "btn btn-new me-2" %>
-        <% else %>
-          <%= link_to "Minhas Reservas - Faça Login", new_user_session_path, class: "btn btn-new me-2" %>
-        <% end %>
+        
       </div>
     </div>
     
