@@ -25,7 +25,7 @@
       <% @reservas.each_with_index do |reserva, index| %>
         <tr>
           <td><%= index + 1 %></td>
-          <td><%= reserva.cliente.nome %></td>
+          <td><%= reserva.user.nome %></td>
           <td><%= reserva.data_inicio.strftime('%d/%m/%Y') %></td>
           <td><%= reserva.data_fim.strftime('%d/%m/%Y') %></td>
           <td><%= reserva.status %></td>

@@ -11,10 +11,9 @@ namespace :dev do
   end
 
   desc "Adiciona carros, clientes, reservas e pagamentos fake"
-  task add_dados: :environment dor
+  task add_dados: :environment do
     show_spinner("Adicionando Categorias...") { add_categorias }
     show_spinner("Adicionando Carros...") { add_carros }
-    show_spinner("Adicionando Clientes...") { add_clientes }
     show_spinner("Adicionando Reservas...") { add_reservas }
     show_spinner("Adicionando Pagamentos...") { add_pagamentos }
   end
@@ -42,41 +41,33 @@ namespace :dev do
     end
   end
 
-  def add_clientes
-    30.times do
-      Cliente.create!(
-        nome: Faker::Name.name,
-        email: Faker::Internet.email,
-        telefone: Faker::PhoneNumber.cell_phone,
-        endereco: Faker::Address.full_address,
-      )
-    end
-  end
-
   def add_reservas
+    users = User.all # Busca os usuários criados no seed
+    raise "Sem usuários disponíveis para criar reservas" if users.empty?
+  
     50.times do
       carro = Carro.where(status: "disponível").sample
       next unless carro # Garante que existe um carro disponível
-
-      cliente = Cliente.all.sample
+  
+      user = users.sample # Seleciona um usuário
       data_inicio = Faker::Date.forward(days: rand(1..30))
       data_fim = data_inicio + rand(1..10).days
       preco_total = carro.diaria * (data_fim - data_inicio).to_i
-
+  
       Reserva.create!(
-        cliente_id: cliente.id,
+        user_id: user.id, # Associa o usuário à reserva
         carro_id: carro.id,
         data_inicio: data_inicio,
         data_fim: data_fim,
         preco_total: preco_total,
         status: ["pendente", "pago", "atrasado"].sample,
       )
-
+  
       # Atualiza o status do carro para "alugado"
       carro&.update!(status: "alugado")
     end
   end
-
+  
   def add_pagamentos
     Reserva.all.find_each do |reserva|
     status = ["pendente", "pago", "atrasado"].sample

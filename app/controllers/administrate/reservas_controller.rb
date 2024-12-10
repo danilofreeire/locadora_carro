@@ -8,7 +8,7 @@ module Administrate
 
     # GET /reservas or /reservas.json
     def index
-      @reservas = Reserva.includes(:carro, :cliente).page(params[:page]).per(10)
+      @reservas = Reserva.includes(:carro, :user).page(params[:page]).per(10)
     end
 
     # GET /reservas/1 or /reservas/1.json

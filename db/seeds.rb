@@ -25,4 +25,15 @@ admins.each do |email, nome|
     password: ENV["DEFAULT_PASSWORD"],
     password_confirmation: ENV["DEFAULT_PASSWORD"],
   )
+  
+end
+30.times do
+  User.create!(
+    nome: Faker::Name.name,
+    email: Faker::Internet.email,
+    telefone: Faker::PhoneNumber.cell_phone,
+    endereco: Faker::Address.full_address,
+    password: "123456", # Senha padrão
+    password_confirmation: "123456"
+  )
 end

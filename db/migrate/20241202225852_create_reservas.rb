@@ -3,7 +3,7 @@
 class CreateReservas < ActiveRecord::Migration[7.1]
   def change
     create_table(:reservas) do |t|
-      t.references(:cliente, null: false, foreign_key: true)
+      t.references(:user, null: false, foreign_key: true)
       t.references(:carro, null: false, foreign_key: true)
       t.date(:data_inicio)
       t.date(:data_fim)

@@ -3,7 +3,7 @@
 json.extract!(
   reserva,
   :id,
-  :cliente_id,
+  :user_id,
   :carro_id,
   :data_inicio,
   :data_fim,

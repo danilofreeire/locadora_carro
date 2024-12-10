@@ -9,5 +9,5 @@ class User < ApplicationRecord
     :rememberable,
     :validatable
 
-  has_many :reserva 
+  has_many :reservas
 end

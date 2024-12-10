@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_12_09_125957) do
+ActiveRecord::Schema[7.1].define(version: 2024_12_10_161239) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -73,15 +73,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_12_09_125957) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "clientes", force: :cascade do |t|
-    t.string "nome"
-    t.string "email"
-    t.string "telefone"
-    t.string "endereco"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "pagamentos", force: :cascade do |t|
     t.integer "reserva_id", null: false
     t.decimal "valor"
@@ -94,7 +85,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_12_09_125957) do
   end
 
   create_table "reservas", force: :cascade do |t|
-    t.integer "cliente_id", null: false
+    t.integer "user_id", null: false
     t.integer "carro_id", null: false
     t.date "data_inicio"
     t.date "data_fim"
@@ -103,7 +94,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_12_09_125957) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["carro_id"], name: "index_reservas_on_carro_id"
-    t.index ["cliente_id"], name: "index_reservas_on_cliente_id"
+    t.index ["user_id"], name: "index_reservas_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -114,6 +105,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_12_09_125957) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "nome"
+    t.string "telefone"
+    t.string "endereco"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
@@ -123,5 +117,5 @@ ActiveRecord::Schema[7.1].define(version: 2024_12_09_125957) do
   add_foreign_key "carros", "categoria"
   add_foreign_key "pagamentos", "reservas"
   add_foreign_key "reservas", "carros"
-  add_foreign_key "reservas", "clientes"
+  add_foreign_key "reservas", "users"
 end

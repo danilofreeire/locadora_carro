@@ -1,12 +1,11 @@
 # frozen_string_literal: true
 
 class Reserva < ApplicationRecord
-  belongs_to :cliente
   belongs_to :carro
   belongs_to :user
   has_one :pagamento, dependent: :destroy #qnd excluir uma reserva, exclui o pagamento tb
 
-  validates :cliente, presence: true
+  validates :user, presence: true
   validates :carro, presence: true
   validates :data_inicio, presence: true
   validates :data_fim, presence: true #deve ser obrigatório

@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   namespace :administrate do
     resources :pagamentos
     resources :reservas
-    resources :clientes
+    resources :users
     resources :carros do
       member do
         delete "destroy_cover_image"
