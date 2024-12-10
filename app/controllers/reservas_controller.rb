@@ -4,5 +4,5 @@ class ReservasController < ApplicationController
     def index
       @reservas = current_user.reservas.includes(:carro) #apenas as reservas do usuário logado
     end
-  end
+end
   
