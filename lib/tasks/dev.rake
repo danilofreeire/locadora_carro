@@ -34,7 +34,7 @@ namespace :dev do
         ano: Faker::Vehicle.year,
         cor: Faker::Vehicle.color,
         placa: Faker::Vehicle.license_plate,
-        status: ["disponível", "alugado", "manutenção"].sample,
+        status: ["Disponível", "Alugado", "Manutenção"].sample,
         diaria: Faker::Commerce.price(range: 50..300),
         categoria: categorias.sample, # Associa o carro a uma categoria aleatória
       )
@@ -46,7 +46,7 @@ namespace :dev do
     raise "Sem usuários disponíveis para criar reservas" if users.empty?
   
     50.times do
-      carro = Carro.where(status: "disponível").sample
+      carro = Carro.where(status: "Disponível").sample
       next unless carro # Garante que existe um carro disponível
   
       user = users.sample # Seleciona um usuário
@@ -60,23 +60,23 @@ namespace :dev do
         data_inicio: data_inicio,
         data_fim: data_fim,
         preco_total: preco_total,
-        status: ["pendente", "pago", "atrasado"].sample,
+        status: ["Pendente", "Pago", "Atrasado"].sample,
       )
   
       # Atualiza o status do carro para "alugado"
-      carro&.update!(status: "alugado")
+      carro&.update!(status: "Alugado")
     end
   end
   
   def add_pagamentos
     Reserva.all.find_each do |reserva|
-    status = ["pendente", "pago", "atrasado"].sample
-    data_pagamento = status == "pago" ? Faker::Date.backward(days: 10) : Faker::Date.forward(days: 5)
+    status = ["Pendente", "Pago", "Atrasado"].sample
+    data_pagamento = status == "Pago" ? Faker::Date.backward(days: 10) : Faker::Date.forward(days: 5)
       Pagamento.create!(
         reserva_id: reserva.id,
         valor: reserva.preco_total,
         status: status,
-        metodo_pagamento: ["cartão", "boleto", "pix", "dinheiro"].sample,
+        metodo_pagamento: ["Cartão", "Boleto", "Pix", "Dinheiro"].sample,
         data_pagamento: data_pagamento
         )
     end

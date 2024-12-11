@@ -21,7 +21,7 @@
     <tbody>
       <% @categorias.each_with_index do |categoria, index| %>
         <tr>
-          <td><%= index + 1 %></td>
+          <td><%= categoria.id %></td>
           <td><%= categoria.nome %></td>
           <td><%= categoria.descricao %></td>
           <td>

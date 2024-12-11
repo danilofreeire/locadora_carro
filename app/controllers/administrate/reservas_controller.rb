@@ -4,6 +4,9 @@ module Administrate
   class ReservasController < ApplicationController
     before_action :authenticate_admin!
     before_action :set_reserva, only: [:show, :edit, :update, :destroy]
+    before_action :set_carros, only: [:new, :edit, :show]
+    before_action :set_users, only: [:new, :edit, :show]
+
     layout "administrate"
 
     # GET /reservas or /reservas.json
@@ -55,19 +58,15 @@ module Administrate
     # DELETE /reservas/1 or /reservas/1.json
     def destroy
       respond_to do |format|
-        format.html do
-          if @reserva.carro|| @reserva.cliente > 0
-            redirect_to(
-              administrate_reservas_path,
-              notice: "Já há um carro reservado. Não é possível apagar",
-            )
-          else
-            @reserva.destroy!
-            redirect_to(administrate_reservas_path, status: :see_other, notice: "Reserva foi apagada.")
-          end    
-
+        ActiveRecord::Base.transaction do
+          @reserva.destroy!
+          @reserva.carro.update!(status: "disponível") if @reserva.carro.present? # Torna o carro disponível novamente
         end
-        format.json { head(:no_content) }
+        format.html { redirect_to administrate_reservas_path, status: :see_other, notice: "Reserva foi cancelada com sucesso." }
+        format.json { head :no_content }
+      rescue => e
+        format.html { redirect_to administrate_reservas_path, alert: "Erro ao cancelar a reserva: #{e.message}" }
+        format.json { render json: { error: e.message }, status: :unprocessable_entity }
       end
     end
 
@@ -77,10 +76,17 @@ module Administrate
     def set_reserva
       @reserva = Reserva.find(params[:id])
     end
+    def set_users
+      @users = User.all
+    end
+
+    def set_carros
+      @carros = Carro.all
+    end
 
     # Only allow a list of trusted parameters through.
     def reserva_params
-      params.require(:reserva).permit(:cliente_id, :carro_id, :data_inicio, :data_fim, :preco_total, :status)
+      params.require(:reserva).permit(:user_id, :carro_id, :data_inicio, :data_fim, :preco_total, :status)
     end
   end
 end

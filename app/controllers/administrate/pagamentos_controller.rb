@@ -4,6 +4,8 @@ module Administrate
   class PagamentosController < ApplicationController
     before_action :authenticate_admin!
     before_action :set_pagamento, only: [:show, :edit, :update, :destroy]
+    before_action :set_reservas, only: [:new, :edit, :show]
+
     layout "administrate"
 
     # GET /pagamentos or /pagamentos.json
@@ -71,6 +73,9 @@ module Administrate
       @pagamento = Pagamento.find(params[:id])
     end
 
+    def set_reservas
+      @reservas = Reserva.all
+    end
     # Only allow a list of trusted parameters through.
     def pagamento_params
       params.require(:pagamento).permit(:reserva_id, :valor, :status, :metodo_pagamento, :data_pagamento)

@@ -24,7 +24,7 @@
     <tbody>
       <% @carros.each_with_index do |carro, index| %>
         <tr>
-          <td><%= index + 1 %></td>
+          <td><%= carro.id %></td>
           <td><%= carro.marca %></td>
           <td><%= carro.modelo %></td>
           <td><%= carro.ano %></td>

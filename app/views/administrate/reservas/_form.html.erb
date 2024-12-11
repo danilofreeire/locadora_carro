@@ -11,34 +11,42 @@
     </div>
   <% end %>
 
+  <!-- Campo para pesquisar e selecionar usuário -->
   <div>
-    <%= form.label :user_id, style: "display: block" %>
-    <%= form.text_field :user_id %>
+    <%= form.label :user_id, "Usuário", style: "display: block" %>
+    <%= form.collection_select :user_id, User.all, :id, :nome, 
+          { prompt: "Selecione um usuário" }, 
+          { class: "form-control select2" } %>
   </div>
 
   <div>
-    <%= form.label :carro_id, style: "display: block" %>
-    <%= form.text_field :carro_id %>
+    <%= form.label :carro_id, "Carro", style: "display: block" %>
+    <%= form.collection_select :carro_id, Carro.all, :id, :modelo, 
+          { prompt: "Selecione um carro" }, 
+          { class: "form-control select2" } %>
   </div>
+
 
   <div>
     <%= form.label :data_inicio, style: "display: block" %>
-    <%= form.date_field :data_inicio %>
+    <%= form.date_field :data_inicio,{ class: "form-control select2" }  %>
   </div>
 
   <div>
     <%= form.label :data_fim, style: "display: block" %>
-    <%= form.date_field :data_fim %>
+    <%= form.date_field :data_fim, { class: "form-control select2" } %>
   </div>
 
-  <div>
-    <%= form.label :preco_total, style: "display: block" %>
-    <%= form.text_field :preco_total %>
-  </div>
+<div>
+  <%= form.label :preco_total, "Preço Total", style: "display: block" %>
+  <%= form.text_field :preco_total, class: "form-control currency-input", placeholder: "R$ 0,00", data: { role: "currency" } %>
+</div>
 
+
+   <!-- Campo para selecionar status com valores restritos -->
   <div>
-    <%= form.label :status, style: "display: block" %>
-    <%= form.text_field :status %>
+    <%= form.label :status, "Status", style: "display: block" %>
+    <%= form.select :status, [["Pendente", "Pendente"], ["Atrasado", "Atrasado"], ["Pago", "Pago"]], { prompt: "Selecione um status" },{ class: "form-control select2" } %>
   </div>
 
   <div>

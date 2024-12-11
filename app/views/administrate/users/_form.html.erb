@@ -18,10 +18,25 @@
 
   <div>
     <%= form.label :email, style: "display: block" %>
-    <%= form.text_field :email %>
+    <%= form.email_field :email  %>
   </div>
 
+
+  <!-- Campo de Senha -->
   <div>
+    <%= form.label :password, "Senha", style: "display: block" %>
+    <% if @minimum_password_length %>
+      <small class="text-muted">(Min: <%= @minimum_password_length %> caracteres)</small>
+    <% end %>
+    <%= form.password_field :password, autocomplete: "new-password" %>
+  </div>
+
+
+ <div>
+      <%= form.label :password_confirmation, "Confirme sua Senha" %>
+      <%= form.password_field :password_confirmation, autocomplete: "new-password" %>
+  </div>
+<div>
     <%= form.label :telefone, style: "display: block" %>
     <%= form.text_field :telefone %>
   </div>

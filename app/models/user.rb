@@ -9,5 +9,5 @@ class User < ApplicationRecord
     :rememberable,
     :validatable
 
-  has_many :reservas
+  has_many :reservas,dependent: :destroy 
 end

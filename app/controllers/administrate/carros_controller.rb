@@ -4,6 +4,8 @@ module Administrate
   class CarrosController < ApplicationController
     before_action :authenticate_admin!
     before_action :set_carro, only: [:show, :edit, :update, :destroy, :destroy_cover_image]
+    before_action :set_categorias, only: [:new, :edit, :show]
+
     layout "administrate"
     # GET /carros or /carros.json
     def index
@@ -82,6 +84,10 @@ module Administrate
     # Use callbacks to share common setup or constraints between actions.
     def set_carro
       @carro = Carro.find(params[:id])
+    end
+
+    def set_categorias
+      @categorias = Categoria.all
     end
 
     # Only allow a list of trusted parameters through.

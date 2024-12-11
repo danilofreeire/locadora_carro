@@ -24,7 +24,7 @@
     <tbody>
       <% @users.each_with_index do |user, index| %>
         <tr>
-          <td><%= index + 1 %></td>
+          <td><%= user.id%></td>
           <td><%= user.nome %></td>
           <td><%= user.email %></td>
           <td><%= user.telefone %></td>

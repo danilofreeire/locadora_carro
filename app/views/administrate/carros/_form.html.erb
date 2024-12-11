@@ -36,11 +36,12 @@
     <%= form.text_field :placa %>
   </div>
 
+
+
   <div>
     <%= form.label :status, style: "display: block" %>
-    <%= form.text_field :status %>
+    <%= form.select :status, options_for_select(["Disponível", "Alugado", "Manutenção"], carro.status), {}, class: "form-select" %>
   </div>
-
   <div>
     <%= form.label :diaria, style: "display: block" %>
     <%= form.text_field :diaria %>

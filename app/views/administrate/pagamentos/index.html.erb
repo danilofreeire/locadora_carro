@@ -23,7 +23,7 @@
     <tbody>
       <% @pagamentos.each_with_index do |pagamento, index| %>
         <tr>
-          <td><%= index + 1 %></td>
+          <td><%= pagamento.id %></td>
           <td><%= pagamento.reserva&.user&.nome || "Cliente não disponível" %></td>
           <td><%= number_to_currency(pagamento.valor) %></td>
           <td><%= pagamento.data_pagamento.present? ? pagamento.data_pagamento.strftime('%d/%m/%Y') : "Data não disponível" %></td>

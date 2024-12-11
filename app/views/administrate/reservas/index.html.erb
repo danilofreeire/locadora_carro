@@ -24,11 +24,12 @@
     <tbody>
       <% @reservas.each_with_index do |reserva, index| %>
         <tr>
-          <td><%= index + 1 %></td>
+          <td><%= reserva.id %></td>
           <td><%= reserva.user.nome %></td>
           <td><%= reserva.data_inicio.strftime('%d/%m/%Y') %></td>
           <td><%= reserva.data_fim.strftime('%d/%m/%Y') %></td>
           <td><%= reserva.status %></td>
+          
           <td>
             <div class="d-flex justify-content-start align-items-center">
               <%= link_to [:administrate, reserva], title: "Visualizar", alt: "eye", class: "me-2" do %>

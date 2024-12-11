@@ -69,13 +69,12 @@ module Administrate
     # Use callbacks to share common setup or constraints between actions.
     def set_user
       Rails.logger.debug("Parâmetro recebido: #{params[:id]}")
-
-      @user = user.find(params[:id])
+      @user = User.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
     def user_params
-      params.require(:user).permit(:nome, :email, :telefone, :endereco)
+      params.require(:user).permit(:nome, :email, :telefone, :endereco, :password, :password_confirmation)
     end
   end
 end
