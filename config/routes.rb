@@ -20,6 +20,10 @@ Rails.application.routes.draw do
     resources :reservas
     resources :users
     resources :carros do
+      collection do 
+        get :gerar_pdf
+        get :gerar_csv
+      end
       member do
         delete "destroy_cover_image"
       end
