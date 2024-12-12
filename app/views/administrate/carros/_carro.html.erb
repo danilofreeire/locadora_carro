@@ -42,6 +42,6 @@
    
   <p>
     <strong>Cover:</strong>
-    <%= image_tag carro.cover_image.variant(:thumb) if carro.cover_image.attached? %>
+    <%= image_tag (cover_image_fallback(carro)) %>
   </p>
 </div>

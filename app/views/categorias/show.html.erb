@@ -1,0 +1,18 @@
+<div class="container mt-5">
+  <h2 class="text-center"><%= @categoria.nome %></h2>
+  <div class="row mt-4">
+    <% tem_carros_disponiveis = false %> 
+    <% @carros.each do |carro| %>
+      <% if carro.status == "Disponível" %>
+        <%= render partial: 'carros', locals: { carro: carro } %>
+        <% tem_carros_disponiveis = true %>
+      <% end %>
+    <% end %>
+
+    <% unless tem_carros_disponiveis %>
+      <div class="col-12 text-center">
+        <p>Sem carros disponíveis</p>
+      </div>
+    <% end %>
+  </div>
+</div>

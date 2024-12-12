@@ -8,8 +8,9 @@ Rails.application.routes.draw do
 
   get "/inicio", to: "welcome#index"
 
-  resources :reservas #rota p os usuarios
-
+  resources :reservas
+  resources :categorias, only: [:show]
+  
   namespace :administrate do
     get "/" => "dashboards#index"
     resources :pagamentos

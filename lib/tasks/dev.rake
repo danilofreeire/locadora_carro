@@ -28,7 +28,7 @@ namespace :dev do
   def add_carros
     categorias = Categoria.all
     20.times do
-      Carro.create!(
+      carro = Carro.create!(
         marca: Faker::Vehicle.manufacture,
         modelo: Faker::Vehicle.model,
         ano: Faker::Vehicle.year,
@@ -37,6 +37,12 @@ namespace :dev do
         status: ["Disponível", "Alugado", "Manutenção"].sample,
         diaria: Faker::Commerce.price(range: 50..300),
         categoria: categorias.sample, # Associa o carro a uma categoria aleatória
+      )
+
+      image_id = rand(1..5)
+      carro.cover_image.attach(
+        io: File.open(Rails.root.join("lib/tasks/images/carro#{image_id}.png")),
+        filename: "carro#{image_id}.png",
       )
     end
   end

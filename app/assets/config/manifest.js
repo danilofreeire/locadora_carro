@@ -8,3 +8,4 @@
 //= link sb-admin-2.css
 //= link @fortawesome--fontawesome-free.js
 //= link sb-admin-2.min.js
+//= link pages/teste.css

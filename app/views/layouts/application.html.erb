@@ -6,8 +6,11 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
+    <%= stylesheet_link_tag 'application', media: 'all' %>
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= stylesheet_link_tag "pages/welcome", media: "all" if controller.controller_name == "welcome" %>
+     <%= stylesheet_link_tag "pages/teste", media: "all", "data-turbo-track": "reload" %>
+
     <%= stylesheet_link_tag "pages/login_admin", media: "all", "data-turbo-track": "reload" %>
     <%= favicon_link_tag asset_path("favicon.ico") %>
 

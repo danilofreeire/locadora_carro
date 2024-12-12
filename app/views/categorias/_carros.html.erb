@@ -1,0 +1,13 @@
+<div class="col-md-4 mb-4">
+  <div class="card car-card">
+    <%= image_tag carro.cover_image, class: "card-img-top", alt: carro.modelo %>
+    <div class="card-body text-center">
+      <h5 class="card-title"><%= carro.modelo %></h5>
+      <p class="card-text"><strong>Ano:</strong> <%= carro.ano %></p>
+      <p class="card-text"><strong>Status:</strong> <%= carro.status %></p>
+      <p class="card-text"><strong>Diária:</strong> R$ <%= carro.diaria %></p>
+      <p class="card-text"><strong>Placa:</strong> <%= carro.placa %></p>
+      <a href="#" class="btn btn-primary">Reservar</a>
+    </div>
+  </div>
+</div>

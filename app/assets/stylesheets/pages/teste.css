@@ -1,0 +1,21 @@
+.car-card {
+  height: 100%; /* Garante que todos os cards tenham a mesma altura */
+  display: flex;
+  flex-direction: column;
+}
+
+.car-card .card-body {
+  flex: 1; /* Faz com que o corpo do card ocupe o espaço disponível */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end; /* Garante que o conteúdo dentro do card seja alinhado ao fundo */
+}
+
+.car-card .card-img-top {
+  width: 100%;
+  height: 200px; /* ou outra altura desejada */
+  object-fit: cover;
+}
+.car-card .card-body .card-text {
+  margin-bottom: 0.5rem; /* Ajusta o espaçamento entre as linhas de texto */
+}
