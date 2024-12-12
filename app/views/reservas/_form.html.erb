@@ -1,0 +1,55 @@
+<%= form_with(model: [:administrate, reserva]) do |form| %>
+  <% if reserva.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(reserva.errors.count, "error") %> prohibited this reserva from being saved:</h2>
+
+      <ul>
+        <% reserva.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <!-- Campo para pesquisar e selecionar usuário -->
+  <div>
+    <%= form.label :user_id, "Usuário", style: "display: block" %>
+    <%= form.collection_select :user_id, User.all, :id, :nome, 
+          { prompt: "Selecione um usuário" }, 
+          { class: "form-control select2" } %>
+  </div>
+
+  <div>
+    <%= form.label :carro_id, "Carro", style: "display: block" %>
+    <%= form.collection_select :carro_id, Carro.all, :id, :modelo, 
+          { prompt: "Selecione um carro" }, 
+          { class: "form-control select2" } %>
+  </div>
+
+
+  <div>
+    <%= form.label :data_inicio, style: "display: block" %>
+    <%= form.date_field :data_inicio,{ class: "form-control select2" }  %>
+  </div>
+
+  <div>
+    <%= form.label :data_fim, style: "display: block" %>
+    <%= form.date_field :data_fim, { class: "form-control select2" } %>
+  </div>
+
+<div>
+  <%= form.label :preco_total, "Preço Total", style: "display: block" %>
+  <%= form.text_field :preco_total, class: "form-control currency-input", placeholder: "R$ 0,00", data: { role: "currency" } %>
+</div>
+
+
+   <!-- Campo para selecionar status com valores restritos -->
+  <div>
+    <%= form.label :status, "Status", style: "display: block" %>
+    <%= form.select :status, [["Pendente", "Pendente"], ["Atrasado", "Atrasado"], ["Pago", "Pago"]], { prompt: "Selecione um status" },{ class: "form-control select2" } %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

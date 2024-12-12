@@ -11,11 +11,34 @@ class Reserva < ApplicationRecord
   validates :data_fim, presence: true #deve ser obrigatório
   validates :status, inclusion: { in: ["Pendente", "Pago", "Atrasado"] }
 
+  
   validate :data_fim_deve_ser_maior_que_data_inicio
+  validate :carro_status, on: :create
+
 
   after_create :criar_pagamento
+  after_create :criar_pagamento, :atualizar_status_carro
 
   private
+
+  def carro_status
+    return if carro.blank?
+
+    unless carro.status=="Disponível"
+      errors.add(:carro, "não está disponível para reserva")
+    end
+  end
+
+
+
+  def atualizar_status_carro
+    carro.update!(status: "Alugado")
+  end
+
+  def reverter_status_carro
+    carro.update!(status: "Disponível")
+  end
+
 
   def data_fim_deve_ser_maior_que_data_inicio
     return if data_inicio.blank? || data_fim.blank?

@@ -2,15 +2,16 @@
 
 Rails.application.routes.draw do
   devise_for :users
-
   devise_for :admins
+
   get "welcome/index"
 
   get "/inicio", to: "welcome#index"
 
-  resources :reservas, only: [:index] #rota p os usuarios
+  resources :reservas #rota p os usuarios
 
   namespace :administrate do
+    get "/" => "dashboards#index"
     resources :pagamentos
     resources :reservas
     resources :users

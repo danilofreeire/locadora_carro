@@ -60,7 +60,7 @@ module Administrate
       respond_to do |format|
         ActiveRecord::Base.transaction do
           @reserva.destroy!
-          @reserva.carro.update!(status: "disponível") if @reserva.carro.present? # Torna o carro disponível novamente
+          @reserva.carro.update!(status: "Disponível") if @reserva.carro.present? # Torna o carro disponível novamente
         end
         format.html { redirect_to administrate_reservas_path, status: :see_other, notice: "Reserva foi cancelada com sucesso." }
         format.json { head :no_content }
@@ -81,8 +81,9 @@ module Administrate
     end
 
     def set_carros
-      @carros = Carro.all
+      @carros = Carro.where(status: "Disponível")
     end
+    
 
     # Only allow a list of trusted parameters through.
     def reserva_params
