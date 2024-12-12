@@ -10,7 +10,7 @@ class Reserva < ApplicationRecord
   validates :data_inicio, presence: true
   validates :data_fim, presence: true #deve ser obrigatório
   validates :status, inclusion: { in: ["Pendente", "Pago", "Atrasado"] }
-
+  
   
   validate :data_fim_deve_ser_maior_que_data_inicio
   validate :carro_status, on: :create

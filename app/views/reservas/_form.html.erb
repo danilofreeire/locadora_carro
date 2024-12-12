@@ -1,55 +1,54 @@
-<%= form_with(model: [:administrate, reserva]) do |form| %>
-  <% if reserva.errors.any? %>
+<%= form_with(model: @reserva) do |form| %>
+  <% if @reserva.errors.any? %>
     <div style="color: red">
-      <h2><%= pluralize(reserva.errors.count, "error") %> prohibited this reserva from being saved:</h2>
-
+      <h2><%= pluralize(@reserva.errors.count, "error") %> proibiram esta reserva de ser salva:</h2>
       <ul>
-        <% reserva.errors.each do |error| %>
+        <% @reserva.errors.each do |error| %>
           <li><%= error.full_message %></li>
         <% end %>
       </ul>
     </div>
   <% end %>
 
-  <!-- Campo para pesquisar e selecionar usuário -->
+  <% reserva_nome = @reserva.user.nome.present? ? @reserva.user.nome : @reserva.user.email %>
+
+  <!-- Dados do Usuário (Apenas Leitura) -->
   <div>
     <%= form.label :user_id, "Usuário", style: "display: block" %>
-    <%= form.collection_select :user_id, User.all, :id, :nome, 
-          { prompt: "Selecione um usuário" }, 
-          { class: "form-control select2" } %>
+    <%= form.hidden_field :user_id, value: @reserva.user.id %>
+    <input type="text" value="<%= reserva_nome %>" class="form-control" readonly>
   </div>
 
+  <!-- Dados do Carro (Apenas Leitura) -->
   <div>
     <%= form.label :carro_id, "Carro", style: "display: block" %>
-    <%= form.collection_select :carro_id, Carro.all, :id, :modelo, 
-          { prompt: "Selecione um carro" }, 
-          { class: "form-control select2" } %>
+    <%= form.hidden_field :carro_id, value: @reserva.carro.id %>
+    <input type="text" value="<%= @reserva.carro.modelo %>" class="form-control" readonly>
   </div>
-    
+
+  <!-- Campos de Data (Editáveis) -->
+  <div>
+    <%= form.label :data_inicio, "Data Início", style: "display: block" %>
+    <%= form.date_field :data_inicio, class: "form-control select2" %>
+  </div>
 
   <div>
-    <%= form.label :data_inicio, style: "display: block" %>
-    <%= form.date_field :data_inicio,{ class: "form-control select2" }  %>
+    <%= form.label :data_fim, "Data Fim", style: "display: block" %>
+    <%= form.date_field :data_fim, class: "form-control select2" %>
   </div>
 
   <div>
-    <%= form.label :data_fim, style: "display: block" %>
-    <%= form.date_field :data_fim, { class: "form-control select2" } %>
+    <%= form.label :preco_total, "Diária", style: "display: block" %>
+    <%= form.text_field :preco_total, value: @reserva.preco_total, class: "form-control", readonly: true %>
   </div>
 
-<div>
-  <%= form.label :preco_total, "Preço Total", style: "display: block" %>
-  <%= form.text_field :preco_total, class: "form-control currency-input", value: , placeholder: "R$ 0,00", data: { role: "currency" } %>
-</div>
-
-
-   <!-- Campo para selecionar status com valores restritos -->
   <div>
     <%= form.label :status, "Status", style: "display: block" %>
-    <%= form.select :status, [["Pendente", "Pendente"], ["Atrasado", "Atrasado"], ["Pago", "Pago"]], { prompt: "Selecione um status" },{ class: "form-control select2" } %>
+    <%= form.hidden_field :status, value: "Pendente" %> <!-- Status como hidden_field -->
+    <input type="text" value="Pendente" class="form-control" readonly> <!-- Exibição apenas -->
   </div>
 
   <div>
-    <%= form.submit %>
+    <%= form.submit "Confirmar Reserva", class: "btn btn-primary" %>
   </div>
 <% end %>

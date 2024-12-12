@@ -11,6 +11,9 @@ Rails.application.routes.draw do
   resources :reservas
   resources :categorias, only: [:show]
   
+
+  get 'set_return_to_reservas', to: 'welcome#set_return_to_reservas', as: 'set_return_to_reservas'
+
   namespace :administrate do
     get "/" => "dashboards#index"
     resources :pagamentos
