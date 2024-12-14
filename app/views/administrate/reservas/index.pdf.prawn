@@ -16,7 +16,7 @@ Prawn::Document.generate("reservas_lista.pdf", page_size: "A4", margin: 0) do |p
     pdf.move_down 30
 
     # Cabeçalho da tabela
-    headers = ["ID", "user", "Carro", "Placa", "Inicio", "Fim", "Status do pagamento"]
+    headers = ["ID", "Cliente", "Carro", "Placa", "Inicio", "Fim", "Status do pagamento"]
 
     # Dados da tabela
     data = Reserva.all.collect do |r|

@@ -12,52 +12,9 @@ module Administrate
     # GET /carros or /carros.json or /carros.csv
     def index
       @carros = Carro.includes(:categoria).page(params[:page]).per(10)
-
-      respond_to do |format|
-        format.html 
-        format.csv do
-          bom = "\uFEFF" 
-          csv_data = CSV.generate(col_sep: ";", headers: true) do |csv|
-            
-            csv << ["ID", "Marca", "Modelo", "Ano", "Cor", "Placa", "Categoria"]
-            
-            
-            @carros.each do |carro|
-              csv << [
-                carro.id,
-                carro.marca,
-                carro.modelo,
-                carro.ano,
-                carro.cor,
-                carro.placa,
-                carro.categoria&.nome
-              ]
-            end
-          end
-          send_data bom + csv_data, filename: "carros-#{Date.today}.csv", type: "text/csv"
-        end
-      end
     end
 
-    def gerar_pdf
-      @carros = Carro.all
-
-      pdf = Prawn::Document.new
-      pdf.text "Lista de Carros", size: 20, style: :bold
-      pdf.move_down 20
-
-      @carros.each do |carro|
-        pdf.text "Marca: #{carro.marca}"
-        pdf.text "Modelo: #{carro.modelo}"
-        pdf.text "Ano: #{carro.ano}"
-        pdf.text "Cor: #{carro.cor}"
-        pdf.text "Placa: #{carro.placa}"
-        pdf.text "Categoria: #{carro.categoria.nome}" if carro.categoria.present?
-        pdf.move_down 10
-      end
-
-      send_data pdf.render, filename: "carros.pdf", type: "application/pdf", disposition: "inline"
-    end
+    
 
     def destroy_cover_image
       @carro.cover_image.purge
@@ -119,6 +76,33 @@ module Administrate
         format.json { head(:no_content) }
       end
     end
+
+
+
+
+
+    def export_csv
+      @carros = Carro.includes(:categoria).order(:id)
+      csv_data = CSV.generate(headers: true) do |csv|
+        csv << ["ID", "Modelo", "Placa", "Diaria", "Status", "Ano"]
+  
+        @carros.each do |carro|
+          csv << [
+            carro.id,
+            carro.modelo,
+            carro.placa,
+            carro.diaria,
+            carro.status,
+            carro.ano
+          ]
+        end
+      end
+  
+      respond_to do |format|
+        format.csv { send_data csv_data, filename: "carros-#{Date.today}.csv" }
+      end
+    end
+
 
     private
 

@@ -2,7 +2,10 @@ pt-BR:
   activerecord:
     models:
       admin: Administrador
-      article: Artigo
+      carro: Carro
+      user: Cliente
+      pagamento: Pagamento
+      reserva: Reserva
     attributes:
       admin:
         id: Identificador
@@ -13,6 +16,7 @@ pt-BR:
         remember_created_at: Lembrar criado em
         created_at: Criado em
         updated_at: Atualizado em
+        nome: Nome
       carro:
         marca: Marca
         modelo: Modelo
@@ -24,15 +28,19 @@ pt-BR:
         created_at: Criado em
         updated_at: Atualizado em
         cover_image: Imagem de capa
-
-      cliente:
+      user:
         id: Identificador
-        nome: Nome
         email: E-mail
-        telefone: Telefone
-        endereco: Endereço
+        encrypted_password: Senha encriptada
+        reset_password_token: Token de reset de senha
+        reset_password_sent_at: Reset de senha enviado em
+        remember_created_at: Lembrar criado em
         created_at: Criado em
         updated_at: Atualizado em
+        nome: Nome
+        telefone: Telefone
+        endereco: Endereço
+        admin: Administrador
       reserva:
         id: Identificador
         cliente_id: Identificador do cliente

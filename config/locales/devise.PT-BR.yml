@@ -34,8 +34,8 @@ pt-BR:
       confirmed: A sua conta foi confirmada com sucesso.
       new:
         resend_confirmation_instructions: Reenviar instruções de confirmação
-      send_instructions: Dentro de minutos, você receberá um email com as instruções de confirmação da sua conta.
-      send_paranoid_instructions: Se o seu e-mail existir em nosso banco de dados, você receberá um email com instruções sobre como confirmar sua conta em alguns minutos.
+        send_instructions: Dentro de minutos, você receberá um email com as instruções de confirmação da sua conta.
+        send_paranoid_instructions: Se o seu e-mail existir em nosso banco de dados, você receberá um email com instruções sobre como confirmar sua conta em alguns minutos.
     failure:
       already_authenticated: Você já está autenticado.
       inactive: A sua conta ainda não foi ativada.

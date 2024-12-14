@@ -66,6 +66,34 @@ module Administrate
       end
     end
 
+    def export_csv
+      @pagamentos = Pagamento.includes(reserva: :user).order(:id)
+      csv_data = CSV.generate(headers: true) do |csv|
+        csv << ["ID", "Cliente", "Valor", "Status", "Forma", "Data"]
+  
+        @pagamentos.each do |pagamento|
+          csv << [
+            pagamento.id,
+            pagamento.reserva.user.nome,
+            pagamento.valor,
+            pagamento.status,
+            pagamento.metodo_pagamento,
+            pagamento.data_pagamento
+          ]
+        end
+      end
+  
+      respond_to do |format|
+        format.csv { send_data csv_data, filename: "pagamentos-#{Date.today}.csv" }
+      end
+    end
+
+
+
+
+
+
+
     private
 
     # Use callbacks to share common setup or constraints between actions.

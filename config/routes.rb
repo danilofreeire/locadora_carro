@@ -16,13 +16,28 @@ Rails.application.routes.draw do
 
   namespace :administrate do
     get "/" => "dashboards#index"
-    resources :pagamentos
-    resources :reservas
-    resources :users
+
+    resources :pagamentos do
+      collection do
+        get :export_csv, defaults: { format: :csv }
+      end
+    end
+
+    resources :reservas do
+      collection do
+        get :export_csv, defaults: { format: :csv }
+      end
+    end
+
+    resources :users do
+      collection do
+        get :export_csv, defaults: { format: :csv }
+      end
+    end
+
     resources :carros do
       collection do 
-        get :gerar_pdf
-        get :gerar_csv
+        get :export_csv, defaults: { format: :csv }
       end
       member do
         delete "destroy_cover_image"
@@ -31,6 +46,7 @@ Rails.application.routes.draw do
 
     resources :categorias
   end
+
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.

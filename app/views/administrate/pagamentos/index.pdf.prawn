@@ -21,7 +21,7 @@ Prawn::Document.generate("pagamentos_lista.pdf", page_size: "A4", margin: 0) do 
     # Dados da tabela
     data = Pagamento.all.collect do |p|
       [p.id, 
-      p.reserva.cliente.nome,
+      p.reserva.user.nome,
       "R$ #{'%.2f' % p.valor}",
       p.reserva.status, 
       p.metodo_pagamento,

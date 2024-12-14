@@ -10,29 +10,6 @@ module Administrate
     # GET /users or /users.json
     def index
       @users = User.page(params[:page]).per(10)
-
-      respond_to do |format|
-        format.html #visão padrão em HTML
-        format.csv do
-          bom = "\uFEFF" #BOM para compatibilidade com Excel
-          csv_data = CSV.generate(col_sep: ";", headers: true) do |csv|
-            #cabeçalho
-            csv << ["ID", "Nome", "Email", "Criado em", "Atualizado em"]
-
-            #dados dos usuários
-            @users.each do |user|
-              csv << [
-                user.id,
-                user.nome,
-                user.email,
-                user.created_at.strftime("%d/%m/%Y"),
-                user.updated_at.strftime("%d/%m/%Y")
-              ]
-            end
-          end
-          send_data bom + csv_data, filename: "usuarios-#{Date.today}.csv", type: "text/csv"
-        end
-      end
     end
 
     # GET /users/1 or /users/1.json
@@ -87,6 +64,34 @@ module Administrate
         format.json { head(:no_content) }
       end
     end
+
+    def export_csv
+      @users = User.order(:id)
+      csv_data = CSV.generate(headers: true) do |csv|
+        csv << ["ID", "Nome", "Email", "Telefone", "Endereço"]
+  
+        @users.each do |user|
+          csv << [
+            user.id,
+            user.nome,
+            user.email,
+            user.telefone,
+            user.endereco
+          ]
+        end
+      end
+  
+      respond_to do |format|
+        format.csv { send_data csv_data, filename: "clientes-#{Date.today}.csv" }
+      end
+    end
+  
+
+
+
+
+
+
 
     private
 

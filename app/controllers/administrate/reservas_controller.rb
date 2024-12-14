@@ -8,23 +8,15 @@ module Administrate
     before_action :set_reserva, only: [:show, :edit, :update, :destroy]
     before_action :set_carros, only: [:new, :edit, :show]
     before_action :set_users, only: [:new, :edit, :show]
+    before_action :generate_csv, only: [:new, :edit, :show]
 
     layout "administrate"
 
     # GET /reservas or /reservas.json
     def index
       @reservas = Reserva.includes(:carro, :user).page(params[:page]).per(10)
-
-      respond_to do |format|
-        format.html
-        format.csv { send_data generate_csv, filename: "reservas-#{Date.today}.csv" }
-        format.pdf do
-          render pdf: "reservas", 
-                 template: "administrate/reservas/index.pdf.erb",
-                 layout: "pdf"
-        end
-      end
     end
+
 
     # GET /reservas/1 or /reservas/1.json
     def show
@@ -82,25 +74,38 @@ module Administrate
       end
     end
 
-    private
 
-    # Gera o CSV para exportação
-    def generate_csv
-      CSV.generate(headers: true) do |csv|
-        csv << ["ID", "Cliente", "Carro", "Data de Início", "Data de Fim", "Status"]
 
-        @reservas.each do |reserva|
-          csv << [
-            reserva.id,
-            reserva.user.nome,
-            reserva.carro.modelo,
-            reserva.data_inicio.strftime('%d/%m/%Y'),
-            reserva.data_fim.strftime('%d/%m/%Y'),
-            reserva.status
-          ]
-        end
+  def export_csv
+    @reservas = Reserva.includes(:carro, :user).order(:id)
+    csv_data = CSV.generate(headers: true) do |csv|
+      csv << ["ID", "Cliente", "Carro", "Data de Início", "Data de Fim", "Status"]
+
+      @reservas.each do |reserva|
+        csv << [
+          reserva.id,
+          reserva.user.nome,
+          reserva.carro.modelo,
+          reserva.data_inicio.strftime('%d/%m/%Y'),
+          reserva.data_fim.strftime('%d/%m/%Y'),
+          reserva.status
+        ]
       end
     end
+
+    respond_to do |format|
+      format.csv { send_data csv_data, filename: "reservas-#{Date.today}.csv" }
+    end
+  end
+
+
+
+
+
+
+
+    private
+
 
     # Use callbacks to share common setup or constraints between actions.
     def set_reserva
