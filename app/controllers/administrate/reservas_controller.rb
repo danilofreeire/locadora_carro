@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'csv'
+
 module Administrate
   class ReservasController < ApplicationController
     before_action :authenticate_admin!
@@ -12,6 +14,16 @@ module Administrate
     # GET /reservas or /reservas.json
     def index
       @reservas = Reserva.includes(:carro, :user).page(params[:page]).per(10)
+
+      respond_to do |format|
+        format.html
+        format.csv { send_data generate_csv, filename: "reservas-#{Date.today}.csv" }
+        format.pdf do
+          render pdf: "reservas", 
+                 template: "administrate/reservas/index.pdf.erb",
+                 layout: "pdf"
+        end
+      end
     end
 
     # GET /reservas/1 or /reservas/1.json
@@ -72,10 +84,29 @@ module Administrate
 
     private
 
+    # Gera o CSV para exportação
+    def generate_csv
+      CSV.generate(headers: true) do |csv|
+        csv << ["ID", "Cliente", "Carro", "Data de Início", "Data de Fim", "Status"]
+
+        @reservas.each do |reserva|
+          csv << [
+            reserva.id,
+            reserva.user.nome,
+            reserva.carro.modelo,
+            reserva.data_inicio.strftime('%d/%m/%Y'),
+            reserva.data_fim.strftime('%d/%m/%Y'),
+            reserva.status
+          ]
+        end
+      end
+    end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_reserva
       @reserva = Reserva.find(params[:id])
     end
+
     def set_users
       @users = User.all
     end
@@ -83,7 +114,6 @@ module Administrate
     def set_carros
       @carros = Carro.where(status: "Disponível")
     end
-    
 
     # Only allow a list of trusted parameters through.
     def reserva_params

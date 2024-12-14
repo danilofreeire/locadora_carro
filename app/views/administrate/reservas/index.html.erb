@@ -3,8 +3,11 @@
 <div class="d-flex justify-content-end mb-3">
   <%= link_to "Exportar PDF", administrate_reservas_path(format: :pdf), class: "btn btn-new me-2", target: "_blank" %>
 
-  <%= link_to "Nova Reserva", new_administrate_reserva_path, class: "btn btn-new me-2" %>
+  <% if current_user && current_user.admin? %>
+    <%= link_to "Exportar CSV", administrate_reservas_path(format: :csv), class: "btn btn-new me-2", target: "_blank" %>
+  <% end %>
 
+  <%= link_to "Nova Reserva", new_administrate_reserva_path, class: "btn btn-new me-2" %>
 </div>
 
 <h1 class="text-center">Reservas</h1>
@@ -59,3 +62,4 @@
 <div style="display: flex; justify-content: center; margin-top: 20px;">
   <%= paginate @reservas %>
 </div>
+

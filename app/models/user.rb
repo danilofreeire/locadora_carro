@@ -4,14 +4,18 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable,
-    :registerable,
-    :recoverable,
-    :rememberable,
-    :validatable
+         :registerable,
+         :recoverable,
+         :rememberable,
+         :validatable
 
-  has_many :reservas,dependent: :destroy 
+  has_many :reservas, dependent: :destroy
 
-  
+  #verifica se o usuário é administrador
+  def admin?
+    self.admin
+  end
+
   # Allow Devise to accept the nome attribute
   def self.new_with_session(params, session)
     super.tap do |user|
@@ -21,5 +25,5 @@ class User < ApplicationRecord
       end
     end
   end
-
 end
+
