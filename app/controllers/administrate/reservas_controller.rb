@@ -8,7 +8,7 @@ module Administrate
     before_action :set_reserva, only: [:show, :edit, :update, :destroy]
     before_action :set_carros, only: [:new, :edit, :show]
     before_action :set_users, only: [:new, :edit, :show]
-    before_action :generate_csv, only: [:new, :edit, :show]
+
 
     layout "administrate"
 
@@ -33,7 +33,11 @@ module Administrate
 
     # POST /reservas or /reservas.json
     def create
+
       @reserva = Reserva.new(reserva_params)
+      if @reserva.data_inicio.present? && @reserva.data_fim.present?
+        @reserva.preco_total = calcular_preco_total(@reserva)
+      end
 
       respond_to do |format|
         if @reserva.save
@@ -106,7 +110,13 @@ module Administrate
 
     private
 
-
+    def calcular_preco_total(reserva)
+      # Lógica para calcular o preço total com base nas datas
+      dias = (reserva.data_fim - reserva.data_inicio).to_i+ 1
+      dias * reserva.carro.diaria
+    end
+    
+    
     # Use callbacks to share common setup or constraints between actions.
     def set_reserva
       @reserva = Reserva.find(params[:id])

@@ -1,0 +1,54 @@
+<%= form_with(model: @reserva, url: reservas_path) do |form| %>
+  <% if @reserva.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(@reserva.errors.count, "error") %> prohibited this reserva from being saved:</h2>
+
+      <ul>
+        <% @reserva.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <!-- Campo oculto para o ID do usuário -->
+  <%= form.hidden_field :user_id, value: current_user.id %>
+  
+  <!-- Exibição do nome do usuário -->
+ 
+  <!-- Seleção do carro -->
+  <div>
+    <%= form.label :carro_id, "Carro", style: "display: block" %>
+    <%= form.collection_select :carro_id, 
+                               Carro.where(status: "Disponível"), 
+                               :id, 
+                               :modelo, 
+                               { prompt: "Selecione um carro" }, 
+                               { class: "form-control select2" } %>
+  </div>
+
+  <!-- Data de início -->
+  <div>
+    <%= form.label :data_inicio, "Data de Início", style: "display: block" %>
+    <%= form.date_field :data_inicio, { class: "form-control" } %>
+  </div>
+
+  <!-- Data de término -->
+  <div>
+    <%= form.label :data_fim, "Data de Fim", style: "display: block" %>
+    <%= form.date_field :data_fim, { class: "form-control" } %>
+  </div>
+
+  <!-- Preço total oculto -->
+  <%= form.hidden_field :preco_total, value: @reserva.preco_total %>
+
+
+
+  <!-- Campo oculto para o status -->
+  <%= form.hidden_field :status, value: "Pendente" %>
+
+  <!-- Botão de submit -->
+  <div>
+    <%= form.submit "Criar Reserva", class: "btn btn-primary" %>
+  </div>
+<% end %>

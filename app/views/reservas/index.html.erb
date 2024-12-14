@@ -14,6 +14,7 @@
         <th>Data de Início</th>
         <th>Data de Fim</th>
         <th>Status</th>
+        <th>Valor</th>
       </tr>
     </thead>
     <tbody>
@@ -24,6 +25,7 @@
           <td><%= reserva.data_inicio.strftime('%d/%m/%Y') %></td>
           <td><%= reserva.data_fim.strftime('%d/%m/%Y') %></td>
           <td><%= reserva.status %></td>
+          <td><%= reserva.preco_total %></td>
         </tr>
 
       <% end %>

@@ -39,26 +39,15 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
-                <div class="sidebar-brand-icon">
-                    <%= image_tag 'logo', size: "40x40" %>
-                </div>
+             
+            <%= link_to welcome_index_path,class:"sidebar-brand d-flex align-items-center justify-content-center" 	 do %>
+            <div class="sidebar-brand-icon">
+                <%= image_tag 'logo', size: "40x40" %>
                 <div class="sidebar-brand-text mx-3"> Locafácil</div>
-            </a>
-            <!--
-             Divider 
-            <hr class="sidebar-divider my-0">
+                    </div>
+            <% end %>
 
-             Nav Item - Dashboard 
-            <li class="nav-item">
-                <a class="nav-link" href="index.html">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Dashboard</span></a>
-            </li>
-            -->
-            <!-- Divider -->
-          
-
+               
         
 
             <!-- Divider -->

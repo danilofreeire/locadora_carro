@@ -37,10 +37,9 @@
     <%= form.date_field :data_fim, { class: "form-control select2" } %>
   </div>
 
-<div>
-  <%= form.label :preco_total, "Preço Total", style: "display: block" %>
-  <%= form.text_field :preco_total, class: "form-control currency-input", placeholder: "R$ 0,00", data: { role: "currency" } %>
-</div>
+
+  <%= form.hidden_field :preco_total, value: @reserva.preco_total %>
+
 
 
    <!-- Campo para selecionar status com valores restritos -->

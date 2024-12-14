@@ -13,6 +13,7 @@ class ReservasController < ApplicationController
   end
 
   def new
+
     @reserva = Reserva.new
     @carro = Carro.find(params[:carro_id]) if params[:carro_id]
     @reserva.carro = @carro if @carro

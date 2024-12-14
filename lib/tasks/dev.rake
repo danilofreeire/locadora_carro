@@ -27,7 +27,7 @@ namespace :dev do
 
   def add_carros
     categorias = Categoria.all
-    20.times do
+    60.times do
       carro = Carro.create!(
         marca: Faker::Vehicle.manufacture,
         modelo: Faker::Vehicle.model,
@@ -51,7 +51,7 @@ namespace :dev do
     users = User.all # Busca os usuários criados no seed
     raise "Sem usuários disponíveis para criar reservas" if users.empty?
   
-    50.times do
+    20.times do
       carro = Carro.where(status: "Disponível").sample
       next unless carro # Garante que existe um carro disponível
   
