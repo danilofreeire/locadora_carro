@@ -10,7 +10,11 @@
 <body>
     <!-- Header -->
     <header class="navbar navbar-expand-lg navbar-light custom-header px-3">
-        <a class="navbar-brand" href="#">Locafácil</a>
+
+
+<%= link_to welcome_index_path, class: "navbar-brand", style: "color: white;" do %>
+                <%= image_tag 'logo', size: "40x40" %>
+<%end%>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -25,13 +29,17 @@
     <div id="bannerCarousel" class="carousel slide mt-4" data-bs-ride="carousel">
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <img src="car-image1.jpg" class="d-block w-100" alt="Carro 1">
+                <%= image_tag 'banner1', class: "d-block w-100", alt: "Carro 1" %>
+
             </div>
             <div class="carousel-item">
-                <img src="car-image2.jpg" class="d-block w-100" alt="Carro 2">
+                <%= image_tag 'banner2', class: "d-block w-100", alt: "Carro 2" %>
             </div>
             <div class="carousel-item">
-                <img src="car-image3.jpg" class="d-block w-100" alt="Carro 3">
+                <%= image_tag 'banner3', class: "d-block w-100", alt: "Carro 3" %>
+            </div>
+            <div class="carousel-item">
+                <%= image_tag 'banner4', class: "d-block w-100", alt: "Carro 4" %>
             </div>
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#bannerCarousel" data-bs-slide="prev">

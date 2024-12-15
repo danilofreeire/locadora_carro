@@ -15,6 +15,8 @@
         <th>Data de Fim</th>
         <th>Status</th>
         <th>Valor</th>
+        <th>Cancelar</th>
+
       </tr>
     </thead>
     <tbody>
@@ -26,6 +28,18 @@
           <td><%= reserva.data_fim.strftime('%d/%m/%Y') %></td>
           <td><%= reserva.status %></td>
           <td><%= reserva.preco_total %></td>
+          <td>
+            <div class="d-flex justify-content-start align-items-center">
+              <%= button_to reserva_path(reserva), 
+                            data: { turbo: false }, 
+                            method: :delete, 
+                            title: "Apagar", 
+                            alt: "close", 
+                            style: "border: none; background: transparent; padding: 0;" do %>
+                <%= image_tag 'icons/gray/close.svg' %>
+              <% end %>
+            </div>
+          </td>
         </tr>
 
       <% end %>

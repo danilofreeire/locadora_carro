@@ -27,23 +27,40 @@ namespace :dev do
 
   def add_carros
     categorias = Categoria.all
-    60.times do
-      carro = Carro.create!(
-        marca: Faker::Vehicle.manufacture,
-        modelo: Faker::Vehicle.model,
-        ano: Faker::Vehicle.year,
-        cor: Faker::Vehicle.color,
-        placa: Faker::Vehicle.license_plate,
-        status: ["Disponível", "Alugado", "Manutenção"].sample,
-        diaria: Faker::Commerce.price(range: 50..300),
-        categoria: categorias.sample, # Associa o carro a uma categoria aleatória
-      )
+    ActiveRecord::Base.transaction do
+      60.times do
+        carro = Carro.find_or_create_by(
+          marca: Faker::Vehicle.manufacture,
+          modelo: Faker::Vehicle.model,
+          ano: Faker::Vehicle.year,
+          cor: Faker::Vehicle.color,
+          placa: Faker::Vehicle.license_plate,
+          status: gerar_status, 
+          diaria: Faker::Commerce.price(range: 50..300),
+          categoria: categorias.sample, # Associa o carro a uma categoria aleatória
+        )
 
-      image_id = rand(1..5)
-      carro.cover_image.attach(
-        io: File.open(Rails.root.join("lib/tasks/images/carro#{image_id}.png")),
-        filename: "carro#{image_id}.png",
-      )
+        image_id = rand(1..5)
+        carro.cover_image.attach(
+          io: File.open(Rails.root.join("lib/tasks/images/carro#{image_id}.png")),
+          filename: "carro#{image_id}.png",
+        )
+        sleep(0.1) # Adicione um delay de 0,1 segundo
+
+      end
+    end
+  end
+
+
+
+  def gerar_status
+    # Aumentar a probabilidade de "Disponível" (80% das vezes)
+    weights = { "Disponível" => 0.7, "Alugado" => 0.2, "Manutenção" => 0.1 }
+    random = rand
+    cumulative = 0.0
+    weights.each do |status, weight|
+      cumulative += weight
+      return status if random <= cumulative
     end
   end
 
